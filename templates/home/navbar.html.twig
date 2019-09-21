@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+  <div class="col-1">
+    <img class="logo" src="https://image.flaticon.com/icons/png/512/12/12653.png">
+  </div>
+  <div class="col-2">  
+	 <h1 class="funnyShop">Funny Shop</h1>
+  </div>
+  <div class="col-1 panierBtn">
+    <p>Panier<i class="fa fa-shopping-cart" style="font-size:24px"></i></p>
+   </div> 
+  <div class="col-1 loginBtn">
+    <p>Se connecter</p>
+   </div> 
+  <div class="col-1 loginBtn">
+    <p>S'inscrire</p>
+   </div> 
+</div>
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="myNavbar navbar-nav mx-auto">
+      <li class="nav-item">
+        <a class="nav-link text-white" href="{{ path('showByCategory', {'category': 'Tshirt'}) }}">T-shirt</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="{{ path('showByCategory', {'category': 'Jogging'}) }}">Jogging</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="{{ path('showByCategory', {'category': 'Basket'}) }}">Basket</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="{{ path('showByCategory', {'category': 'Jean'}) }}">Jean</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="{{ path('showByCategory', {'category': 'Veste'}) }}">Veste</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="{{ path('showByCategory', {'category': 'Casquette'}) }}">Casquette</a>
+      </li>
+    </ul>
+  </div>
+</nav><br>

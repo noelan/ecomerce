@@ -1,0 +1,65 @@
+@import url('http://fonts.googleapis.com/css?family=Lobster');
+@import url('http://fonts.googleapis.com/css?family=Cabin');
+
+body {
+  font-family: 'Cabin';
+} 
+
+p {
+  font-family: 'Lobster';
+}
+
+.funnyShop {
+	padding-top: 2rem;
+	font-weight: bold;
+}
+
+.logo {
+	width:80%;
+}
+
+.myNavbar > li {
+	padding-right:3rem;
+}	
+
+.myNavbar > li > a{
+	font-weight: bold;
+	font-size: 1.2rem;
+}
+
+.panierBtn {
+	text-align: center;
+}
+
+.panierBtn > p {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.loginBtn {
+	text-align: center;
+}
+
+.loginBtn > p {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+}
+
+.size {
+  border:solid;
+  padding:1rem;
+  text-align: center;
+  font-weight: bold;
+  border-color: grey;
+  border-width: 0.1px;
+  margin:1rem;
+}

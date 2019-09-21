@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="container">
+	{% if  articles %}
+		<h1 class="text-center">Nos {{ articles[0].type }}</h2><hr>
+	{% endif %}
+	<div class="row">
+	{% for article in articles %}
+	<div class="col-3">
+		<div class="card" style="width: 18rem;border:none;">
+			<a href="{{ path('show_one', {'id': article.id}) }}">
+				<img src="{{ article.picture }}" class="card-img-top" alt="...">
+			</a>
+			<div class="card-body">
+				<p class="card-text text-center font-weight-bold">{{ article.name }}</p>
+				<p class="text-center font-weight-light">{{ article.description }}</p>
+				<p class="text-center font-weight-bold">{{ article.price }} €</p>
+			</div>
+		</div>
+	</div>
+		<div class="col-1">
+	</div>
+	{% if loop.index % 3 == 0 %}
+	</div>
+		<hr>
+	<div class="row">	
+	{% endif %}
+	{% endfor %}
+</div>	
+{% endblock %}
