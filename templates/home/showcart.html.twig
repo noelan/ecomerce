@@ -14,8 +14,10 @@
 					<p>{{ article.name }}</p>
 					<p>{{ article.description }}</p>
 					<p>{{ article.price }}</p>
-					<p>taille a dynamiser</p>
 					{% for key,value in app.session.get('cart')  %}
+						{% if app.session.get('cart')|length == loop.index %}
+					<p>taille :{{ key }}</p>
+						{% endif %}
 						{% if key == article.name %}
 					<p>quantité	: {{ value }}</p>
 						{% endif %}

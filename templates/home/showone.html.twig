@@ -16,15 +16,13 @@
 			
 			<div class="row">
 				<h3>Taille :</h3>
-				<select>
-				{% for size in article.size %}
-				<option>{{ size }}</option>
-
-				{% endfor %}
-				</select>
-			</div>
-		
 				<form method="POST" action="{{ path('add_cart', {'id': article.id}) }}"> 
+					<select name="size">
+						{% for size in article.size %}
+							<option value="{{ size }}">{{ size }}</option>
+						{% endfor %}
+					</select>
+			</div>	
 				<h3>Quantité :
 				<select name="quantity">		
 					<option value="1">1</option>

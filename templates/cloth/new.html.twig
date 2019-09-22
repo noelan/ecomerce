@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Cloth{% endblock %}
+
+{% block body %}
+    <h1>Create new Cloth</h1>
+
+    {{ include('cloth/_form.html.twig') }}
+
+    <a href="{{ path('cloth_index') }}">back to list</a>
+{% endblock %}

@@ -91,15 +91,17 @@ class HomeController extends AbstractController
     */
     public function addCart($id, ClothRepository $ClothRepository, SessionInterface $session)
     {   
-
+        $array = [
+                    'jean' => ['quantiter' => 4, 'taille' =>'XL'],
+                ];       
         if (!$session->has('cart')) {
             $session->set('cart', 0); // if total doesn’t exist in session, it is initialized.
         }
         $cart = $session->get('cart'); // get actual value in session with ‘total' key.
         $cloth = $ClothRepository->findOneBy(['id' => $id]);
         $quantity = $_POST['quantity'];
+        $size = $_POST['size'];
         $arrayArticle = [];
-        
         for ($i=0; $i < $quantity ; $i++) { 
             array_push($arrayArticle, $cloth->getName());
         }
@@ -107,11 +109,10 @@ class HomeController extends AbstractController
             foreach ($cart as $key => $value) {
                 for ($i=0; $i < $value ; $i++) { 
                     array_push($arrayArticle, $key);
-                }
-                
-            }
-            
+                }       
+            }      
         }
+        array_push($arrayArticle, $size);  
         $countCart = array_count_values($arrayArticle);
         $session->set('cart', $countCart);
         return $this->redirectToRoute('show_cart');
