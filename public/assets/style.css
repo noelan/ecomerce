@@ -1,6 +1,10 @@
 @import url('http://fonts.googleapis.com/css?family=Lobster');
 @import url('http://fonts.googleapis.com/css?family=Cabin');
 
+h3 {
+  font-family: 'Lobster';
+}
+
 body {
   font-family: 'Cabin';
 } 
@@ -8,6 +12,7 @@ body {
 p {
   font-family: 'Lobster';
 }
+
 
 .funnyShop {
 	padding-top: 2rem;
@@ -42,6 +47,7 @@ p {
 
 .loginBtn {
 	text-align: center;
+  color:black;
 }
 
 .loginBtn > p {
@@ -62,4 +68,13 @@ p {
   border-color: grey;
   border-width: 0.1px;
   margin:1rem;
+}
+
+.cartImg {
+  width: 80%;
+}
+
+.totalPrice {
+  margin-left: 8rem;
+  margin-top: 5rem;
 }

@@ -13,23 +13,28 @@
 			<h3>{{ article.name }}</h3>
 			<p>Note : {{ article.note }}</p>
 			<p>Prix : {{ article.price }} €</p>
-			<h3>Taille</h3>
+			
 			<div class="row">
+				<h3>Taille :</h3>
+				<select>
 				{% for size in article.size %}
-				<div class="col-2 size">
-					{{ size }}
-				</div>
+				<option>{{ size }}</option>
+
 				{% endfor %}
+				</select>
 			</div>
-			<h3>Quantité 
-				<select>		
-					<option>1</option>
-					<option>2</option>
-					<option>3</option>
-					<option>4</option>
-					<option>5</option>
+		
+				<form method="POST" action="{{ path('add_cart', {'id': article.id}) }}"> 
+				<h3>Quantité :
+				<select name="quantity">		
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
 				</select>	
-				<button type="button" class="btn btn-success btn-lg" style="margin-left:3rem;">Ajouter au panier</button>
+				<button type="submit" class="btn btn-success btn-lg" style="margin-left:3rem;">Ajouter au panier</button>
+				</form>
 			</h3>	
 			
 		</div>

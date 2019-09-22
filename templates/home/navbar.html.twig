@@ -6,11 +6,19 @@
 	 <h1 class="funnyShop">Funny Shop</h1>
   </div>
   <div class="col-1 panierBtn">
-    <p>Panier<i class="fa fa-shopping-cart" style="font-size:24px"></i></p>
+    <a class="loginBtn" href="{{ path('show_cart')}}">
+      <p>Panier<i class="fa fa-shopping-cart" style="font-size:24px"></i></p>
+    </a>
    </div> 
+   {% if app.user %}
+   <div class="col-1 loginBtn">
+    <a class="loginBtn" href="{{ path('app_logout') }}"><p>Se deconnecter</p></a>
+   </div> 
+   {% else %} 
   <div class="col-1 loginBtn">
-    <p>Se connecter</p>
-   </div> 
+    <a class="loginBtn" href="{{ path('app_login') }}"><p>Se connecter</p></a>
+   </div>
+   {% endif %} 
   <div class="col-1 loginBtn">
     <p>S'inscrire</p>
    </div> 

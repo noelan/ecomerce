@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -50,6 +52,16 @@ class Cloth
      * @ORM\Column(type="array")
      */
     private $Size = [];
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="cart")
+     */
+    private $users = null;
+
+    public function __construct()
+    {
+        $this->users = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -136,6 +148,34 @@ class Cloth
     public function setSize(array $Size): self
     {
         $this->Size = $Size;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+            $user->addCart($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        if ($this->users->contains($user)) {
+            $this->users->removeElement($user);
+            $user->removeCart($this);
+        }
 
         return $this;
     }
