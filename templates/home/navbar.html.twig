@@ -1,54 +1,58 @@
-<div class="row justify-content-center">
-  <div class="col-1">
-    <a href="{{ path('home') }}"><img class="logo" src="https://image.flaticon.com/icons/png/512/12/12653.png"></a>
+<div class="header">
+  <div class="row justify-content-center">
+    <div class="col-1">
+      <a href="{{ path('home') }}"><img class="logo" src="https://image.flaticon.com/icons/png/512/12/12653.png"></a>
+    </div>
+    <div class="col-2">  
+  	 <a href="{{ path('home') }}"><h1 class="funnyShop" style="text-decoration:none;">Funny Shop</h1></a>
+    </div>
+    <div class="col-1 panierBtn">
+      <a class="loginBtn" href="{{ path('show_cart')}}">
+        <p>Panier<i class="myBlue fa fa-shopping-cart" style="font-size:18px"></i></p>
+      </a>
+     </div>
+     {% if app.user %}
+     <div class="col-1 loginBtn">
+      <a class="loginBtn" href="{{ path('app_logout') }}"><p>Se deconnecter <i class="myBlue fas fa-power-off" style="font-size:18px"></i></p></a>
+     </div> 
+     {% else %} 
+    <div class="col-1 loginBtn">
+      <a class="loginBtn" href="{{ path('app_login') }}"><p>Se connecter <i class="myBlue fas fa-power-off" style="font-size:18px"></i></p></a>
+     </div>
+     {% endif %} 
+     {% if app.user == null %}
+     <div class="col-1 loginBtn">
+      <a class="loginBtn" href="{{ path('app_register') }}"><p>S'inscrire <i class="myBlue fas fa-address-book" style="font-size:18px"></i></p></a>
+     </div>
+     {% endif %}
+     {% if is_granted('ROLE_ADMIN') %}
+     <div class="col-1 loginBtn">
+      <a class="loginBtn" href="{{ path('adminInterface') }}"><p>Admin</p></a>
+     </div>  
+     {% endif %}
   </div>
-  <div class="col-2">  
-	 <a href="{{ path('home') }}"><h1 class="funnyShop" style="text-decoration:none;">Funny Shop</h1></a>
-  </div>
-  <div class="col-1 panierBtn">
-    <a class="loginBtn" href="{{ path('show_cart')}}">
-      <p>Panier<i class="myBlue fa fa-shopping-cart" style="font-size:18px"></i></p>
-    </a>
-   </div>
-   {% if app.user %}
-   <div class="col-1 loginBtn">
-    <a class="loginBtn" href="{{ path('app_logout') }}"><p>Se deconnecter <i class="myBlue fas fa-power-off" style="font-size:18px"></i></p></a>
-   </div> 
-   {% else %} 
-  <div class="col-1 loginBtn">
-    <a class="loginBtn" href="{{ path('app_login') }}"><p>Se connecter <i class="myBlue fas fa-power-off" style="font-size:18px"></i></p></a>
-   </div>
-   {% endif %} 
-  <div class="col-1 loginBtn">
-    <a class="loginBtn" href="{{ path('app_register') }}"><p>S'inscrire <i class="myBlue fas fa-address-book" style="font-size:18px"></i></p></a>
-   </div>
-   {% if is_granted('ROLE_ADMIN') %}
-   <div class="col-1 loginBtn">
-    <a class="loginBtn" href="{{ path('adminInterface') }}"><p>Admin</p></a>
-   </div>  
-   {% endif %}
+  <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="myNavbar navbar-nav mx-auto">
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{{ path('showByCategory', {'category': 'Tshirt'}) }}">T-shirt</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{{ path('showByCategory', {'category': 'Jogging'}) }}">Jogging</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{{ path('showByCategory', {'category': 'Basket'}) }}">Basket</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{{ path('showByCategory', {'category': 'Jean'}) }}">Jean</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{{ path('showByCategory', {'category': 'Veste'}) }}">Veste</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white" href="{{ path('showByCategory', {'category': 'Casquette'}) }}">Casquette</a>
+        </li>
+      </ul>
+    </div>
+  </nav><br>
 </div>
-<nav class="navbar navbar-expand-lg navbar-light bg-dark">
-  <div class="collapse navbar-collapse" id="navbarText">
-    <ul class="myNavbar navbar-nav mx-auto">
-      <li class="nav-item">
-        <a class="nav-link text-white" href="{{ path('showByCategory', {'category': 'Tshirt'}) }}">T-shirt</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-white" href="{{ path('showByCategory', {'category': 'Jogging'}) }}">Jogging</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-white" href="{{ path('showByCategory', {'category': 'Basket'}) }}">Basket</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-white" href="{{ path('showByCategory', {'category': 'Jean'}) }}">Jean</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-white" href="{{ path('showByCategory', {'category': 'Veste'}) }}">Veste</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-white" href="{{ path('showByCategory', {'category': 'Casquette'}) }}">Casquette</a>
-      </li>
-    </ul>
-  </div>
-</nav><br>

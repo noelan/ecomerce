@@ -40,7 +40,7 @@
             {% for cloth in cloths %}
             <div class="col-2">
                 <div class="card" style="width: 10rem;">
-                <a href="{{ path('cloth_edit',{'id':cloth.id}) }}"><img class="card-img-top" src="{{ cloth.picture }}" alt="Card image cap"></a>
+                <a href="{{ path('cloth_edit',{'id':cloth.id}) }}"><img class="card-img-top" src="{{ cloth.picture }}" alt="Card image cap"height="200" width="auto"></a>
                     <div class="card-body justify-content-center">
                         <h5 class="clothName card-title text-center">{{ cloth.name }}</h5>
                     </div>

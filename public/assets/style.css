@@ -120,3 +120,9 @@ li {
   text-overflow: ellipsis;
   text-align: justify;
 }
+
+/*.footer {
+position:fixed;
+bottom:0;
+width:100%;
+}*/
