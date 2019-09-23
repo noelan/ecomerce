@@ -3,7 +3,7 @@
     <a href="{{ path('home') }}"><img class="logo" src="https://image.flaticon.com/icons/png/512/12/12653.png"></a>
   </div>
   <div class="col-2">  
-	 <a href="{{ path('home') }}" style="text-decoration:none;"><h1 class="cabin funnyShop">Funny Shop</h1></a>
+	 <a href="{{ path('home') }}"><h1 class="funnyShop" style="text-decoration:none;">Funny Shop</h1></a>
   </div>
   <div class="col-1 panierBtn">
     <a class="loginBtn" href="{{ path('show_cart')}}">
@@ -12,11 +12,11 @@
    </div>
    {% if app.user %}
    <div class="col-1 loginBtn">
-    <a class="loginBtn" href="{{ path('app_logout') }}"><p>Se deconnecter <i class="myBlue fa fa-power-off" style="font-size:18px"></p></a>
+    <a class="loginBtn" href="{{ path('app_logout') }}"><p>Se deconnecter <i class="myBlue fas fa-power-off" style="font-size:18px"></i></p></a>
    </div> 
    {% else %} 
   <div class="col-1 loginBtn">
-    <a class="loginBtn" href="{{ path('app_login') }}"><p>Se connecter <i class="myBlue fa fa-power-off" style="font-size:18px"></i></p></a>
+    <a class="loginBtn" href="{{ path('app_login') }}"><p>Se connecter <i class="myBlue fas fa-power-off" style="font-size:18px"></i></p></a>
    </div>
    {% endif %} 
   <div class="col-1 loginBtn">

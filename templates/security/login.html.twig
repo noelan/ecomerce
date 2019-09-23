@@ -3,7 +3,7 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
-<form method="post">
+<div class="container col-3">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
@@ -13,30 +13,40 @@
             You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
         </div>
     {% endif %}
+<!--Form with header-->
+<form method="post">
+    <div class="card">
+        <div class="card-block">
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail" class="sr-only">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
-
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
-
-    {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
-
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
+        <!--Header-->
+        <div class="bg-primary darken-4">
+            <h3 class="text-center" style="color:white"><i class="fa fa-lock"></i> Login</h3>
         </div>
-    #}
-
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
+        <!--Body-->
+            <div class="md-form">
+                <i class="fa fa-envelope prefix" style="margin-left:0.5rem;"></i>
+                <label for="inputEmail" class="sr-only">Email</label>
+                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus style="width:80%;margin-left:3.5rem;">
+            </div>
+        <div class="md-form">
+            <i class="fa fa-lock prefix" style="margin-left:0.5rem;"></i>
+                <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required style="width:80%;margin-left:3.5rem;">
+        </div>
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+        <div class="row justify-content-center"> 
+            <button class="btn btn-lg btn-primary" type="submit">
+            Sign in
+            </button>
+        </div>    
+        </div><hr>
+        <!--Footer-->   
+            <div class="justify-content-center">
+                <p class="text-center">Pas encore membre ? <a href="{{ path('app_register') }}">Inscrivez vous !</a></p>
+            </div>
+    </div>
 </form>
+<!--/Form with header-->
+</div>
+
 {% endblock %}
