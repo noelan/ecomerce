@@ -27,14 +27,8 @@ class ClothType extends AbstractType
             ->add('note')
             ->add('picture')
             ->add('description')
-            ->add('Size', CollectionType::class, [
-                'entry_type'   => ChoiceType::class,
-                'entry_options' => [
-                'choices' => [
-                'XL' => 'XL',
-            ],
-        ],
-    ]);
+            ->add('Size')
+    ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

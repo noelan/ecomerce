@@ -27,6 +27,8 @@ class ClothFixtures extends Fixture
                           'https://cdn.tzy.li/tzy/previews/images/001/560/524/584/normal/biere-entierefr.jpg?1547198585',
                           'https://cdn.tzy.li/tzy/previews/images/840/895/093/normal/velo-biere1.png?1512128943',
                           'https://cdn.tzy.li/tzy/previews/images/840/890/895/normal/velo-biere3.png?1512128759',
+                          'https://cdn.tzy.li/tzy/previews/images/855/149/157/normal/velo-biere2.png?1512946790',
+                          'https://cdn.tzy.li/tzy/previews/images/001/174/395/465/normal/biere-et-peche.jpg?1529270880',
                          ],
             'basket' =>  [ 'https://www.tati.fr/phototheque/boutique/200250/medium/00W20002900001.jpg',
                           'https://www.tati.fr/phototheque/boutique/199750/medium/00W19954401691.jpg',
@@ -52,14 +54,14 @@ class ClothFixtures extends Fixture
                          ],
             'Jean'    => ['https://www.tati.fr/phototheque/boutique/194750/medium/00W19462900033.jpg',
                           'https://www.tati.fr/phototheque/boutique/194750/medium/00W19462800001.jpg',
-                          'https://www.tati.fr/phototheque/boutique/194500/medium/00W19436500031.jpg',
+                          'https://www.tati.fr/phototheque/boutique/168000/medium/00W12233400005.jpg',
                           'https://www.tati.fr/phototheque/boutique/194500/medium/00W19436200005.jpg',
                           'https://www.tati.fr/phototheque/boutique/194750/medium/00W19463400001.jpg',
                           'https://www.tati.fr/phototheque/boutique/174000/medium/00W12787600019.jpg',
                           'https://www.tati.fr/phototheque/boutique/168000/medium/00W12233400005.jpg',
                           'https://www.tati.fr/phototheque/boutique/106000/medium/00W067418A.jpg',
                           'https://www.tati.fr/phototheque/boutique/191250/medium/00W19117800005.jpg',
-                          'https://www.tati.fr/vetements-homme/pantalon-jean/jeans/jean-droit-effet-vieilli/173797.html',
+                          'https://www.tati.fr/phototheque/boutique/194750/medium/00W19463400001.jpg',
                           'https://www.tati.fr/phototheque/boutique/163250/medium/00W118518A.jpg',
                          ],
             'Veste'   => ['https://www.tati.fr/phototheque/boutique/203250/medium/00W20323100012.jpg',
@@ -93,7 +95,7 @@ class ClothFixtures extends Fixture
                       ->setPrice(rand(10, 20))
                       ->setName($name)
                       ->setNote(rand(2, 5))
-                      ->setDescription($faker->sentence)
+                      ->setDescription($faker->paragraph)
                       ->setPicture($picture[$i])
                       ->setSize(['S', 'M', 'L', 'XL', 'XXL','3XL', '4Xl', '5XL']);
                 $manager->persist($cloth);

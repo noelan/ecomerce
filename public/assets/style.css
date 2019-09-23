@@ -5,10 +5,18 @@ h3 {
   font-family: 'Lobster';
 }
 
+.lobster {
+  font-family: 'Lobster';
+}
+
+
 body {
   font-family: 'Cabin';
 } 
 
+.cabin {
+  font-family: 'Cabin';
+}
 
 ul {
   justify-content: center;
@@ -21,10 +29,6 @@ li {
   padding: auto;
 }
 
-li:hover {
-  color:red;
-  background-color: red;
-}
 .funnyShop {
 	padding-top: 2rem;
 	font-weight: bold;
@@ -88,4 +92,19 @@ li:hover {
 .totalPrice {
   margin-left: 8rem;
   margin-top: 5rem;
+}
+
+.myP {
+  font-weight: bold;
+  font-size: 3rem;
+  border: solid 0.3rem grey;
+  border-radius: 10px;
+  text-align: center;
+  font-family: 'Lobster';
+}
+
+.clothName {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

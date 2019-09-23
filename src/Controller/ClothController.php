@@ -26,6 +26,16 @@ class ClothController extends AbstractController
     }
 
     /**
+     * @Route("/admin/{category}", name="clothByCategory", methods={"GET"})
+     */
+    public function clothByCategory(ClothRepository $ClothRepository, $category) 
+    {
+        return $this->render('cloth/index.html.twig', [
+            'cloths' => $ClothRepository->findBy(['Type' => $category]),
+        ]);
+    }
+
+    /**
      * @Route("/new", name="cloth_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response

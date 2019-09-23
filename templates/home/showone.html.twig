@@ -5,34 +5,37 @@
 		<div class="col-7">
 			<img src="{{ article.picture }}">
 			<br><br>
-			<h2>Détails du produit :</h2>
-			<p>{{ article.description }}</p>
+			
 		</div>
 		<div class="col-5">
 			<br><br>
 			<h3>{{ article.name }}</h3>
 			<p>Note : {{ article.note }}</p>
-			<p>Prix : {{ article.price }} €</p>
-			
-			<div class="row">
-				<h3>Taille :</h3>
+			<p>Prix : {{ article.price }} €</p>	
 				<form method="POST" action="{{ path('add_cart', {'id': article.id}) }}"> 
+				<p class="justify-content-between">Taille :
 					<select name="size">
 						{% for size in article.size %}
 							<option value="{{ size }}">{{ size }}</option>
 						{% endfor %}
 					</select>
-				<h3>Quantité :
+				</p>	
+				<p>Quantité :
 				<select name="quantity">		
 					<option value="1">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
 					<option value="4">4</option>
 					<option value="5">5</option>
-				</select>	
+				</select>
+				</p>	
 				<button type="submit" class="btn btn-success btn-lg" style="margin-left:3rem;">Ajouter au panier</button>
 				</form>
-			</div>	
+			
+			<br><br>
+				<h2>Détails du produit :</h2>
+				<p>{{ article.description }}</p>
+			
 			
 		</div>
 	</div><hr>	

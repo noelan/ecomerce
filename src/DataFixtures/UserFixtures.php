@@ -22,7 +22,7 @@ class UserFixtures extends Fixture
         // $manager->persist($product);
     	$user = New User();
     	$user->setEmail('mdp@mdp.mdp')
-    		 ->setRoles(['user'])
+    		 ->setRoles(['ROLE_ADMIN'])
              ->setToken(1)
     		 ->setPassword($this->encoder->encodePassword($user,'mdp'));
     	$manager->persist($user);

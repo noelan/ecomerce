@@ -3,45 +3,57 @@
 {% block title %}Cloth index{% endblock %}
 
 {% block body %}
-    <h1>Cloth index</h1>
+    <h1 class="text-center lobster">Interface Article</h1>
+    <p class="text-center">Choisisser l'article à administrer</p>
+    <a href="{{ path('cloth_new') }}"><h2 class="text-center">Creer un nouvel article</h2></a>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Type</th>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Note</th>
-                <th>Picture</th>
-                <th>Description</th>
-                <th>Size</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for cloth in cloths %}
-            <tr>
-                <td>{{ cloth.id }}</td>
-                <td>{{ cloth.Type }}</td>
-                <td>{{ cloth.Name }}</td>
-                <td>{{ cloth.price }}</td>
-                <td>{{ cloth.note }}</td>
-                <td>{{ cloth.picture }}</td>
-                <td>{{ cloth.description }}</td>
-                <td>{{ cloth.Size ? cloth.Size|join(', ') : '' }}</td>
-                <td>
-                    <a href="{{ path('cloth_show', {'id': cloth.id}) }}">show</a>
-                    <a href="{{ path('cloth_edit', {'id': cloth.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="9">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="myNavbar navbar-nav mx-auto">
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="{{ path('cloth_index') }}">Tous les articles</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="{{ path('clothByCategory', {'category': 'Tshirt'}) }}">T-shirt</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="{{ path('clothByCategory', {'category': 'Jogging'}) }}">Jogging</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="{{ path('clothByCategory', {'category': 'Basket'}) }}">Basket</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="{{ path('clothByCategory', {'category': 'Jean'}) }}">Jean</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="{{ path('clothByCategory', {'category': 'Veste'}) }}">Veste</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="{{ path('clothByCategory', {'category': 'Casquette'}) }}">Casquette</a>
+      </li>
+    </ul>
+  </div>
+</nav><br>
+    
+    <div class="container">
+        <div class="row">
+            {% for cloth in cloths %}
+            <div class="col-2">
+                <div class="card" style="width: 10rem;">
+                <a href="{{ path('cloth_edit',{'id':cloth.id}) }}"><img class="card-img-top" src="{{ cloth.picture }}" alt="Card image cap"></a>
+                    <div class="card-body justify-content-center">
+                        <h5 class="clothName card-title text-center">{{ cloth.name }}</h5>
+                    </div>
+                </div>
+            </div>
+            {% if loop.index % 6 == 0 %}
+            </div><br>
+            <div class="row">
+            {% endif %} 
+            {% endfor %}       
+        </div>
+    </div>
+    
 
-    <a href="{{ path('cloth_new') }}">Create new</a>
+    
 {% endblock %}
