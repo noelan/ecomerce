@@ -2,7 +2,7 @@
 {% block body %}
 <div class="container">
 	{% if  articles %}
-		<h1 class="text-center">Nos {{ articles[0].type }}</h2><hr>
+		<h1 class="cabin myBlue text-center">Nos {{ articles[0].type }}</h1><hr>
 	{% endif %}
 	<div class="row">
 	{% for article in articles %}
@@ -12,9 +12,9 @@
 				<img src="{{ article.picture }}" class="card-img-top" alt="...">
 			</a>
 			<div class="card-body">
-				<p class="card-text text-center font-weight-bold">{{ article.name }}</p>
-				<p class="text-center font-weight-light">{{ article.description }}</p>
-				<p class="text-center font-weight-bold">{{ article.price }} €</p>
+				<p class="cabin card-text text-center font-weight-bold" style="font-size:2rem;">{{ article.name }}</p>
+				<p class="myDescription text-center font-weight-light">{{ article.description }}</p>
+				<p class="myBlue text-center font-weight-bold" style="font-size:2rem;">{{ article.price }} €</p>
 			</div>
 		</div>
 	</div>
@@ -26,5 +26,6 @@
 	<div class="row">	
 	{% endif %}
 	{% endfor %}
-</div>	
+	</div>
+</div>
 {% endblock %}

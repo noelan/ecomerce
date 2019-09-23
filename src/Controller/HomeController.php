@@ -37,6 +37,7 @@ class HomeController extends AbstractController
     {
     	return $this->render('home/showone.html.twig', [
     		'article' => $ClothRepository->findOneBy(['id' => $id]),
+            'articlesProposition' => $ClothRepository->findRandom()
     	]); 
     }
 

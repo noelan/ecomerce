@@ -1,26 +1,26 @@
 <div class="row justify-content-center">
   <div class="col-1">
-    <img class="logo" src="https://image.flaticon.com/icons/png/512/12/12653.png">
+    <a href="{{ path('home') }}"><img class="logo" src="https://image.flaticon.com/icons/png/512/12/12653.png"></a>
   </div>
   <div class="col-2">  
-	 <h1 class="funnyShop">Funny Shop</h1>
+	 <a href="{{ path('home') }}" style="text-decoration:none;"><h1 class="cabin funnyShop">Funny Shop</h1></a>
   </div>
   <div class="col-1 panierBtn">
     <a class="loginBtn" href="{{ path('show_cart')}}">
-      <p>Panier<i class="fa fa-shopping-cart" style="font-size:24px"></i></p>
+      <p>Panier<i class="myBlue fa fa-shopping-cart" style="font-size:18px"></i></p>
     </a>
    </div>
    {% if app.user %}
    <div class="col-1 loginBtn">
-    <a class="loginBtn" href="{{ path('app_logout') }}"><p>Se deconnecter</p></a>
+    <a class="loginBtn" href="{{ path('app_logout') }}"><p>Se deconnecter <i class="myBlue fa fa-power-off" style="font-size:18px"></p></a>
    </div> 
    {% else %} 
   <div class="col-1 loginBtn">
-    <a class="loginBtn" href="{{ path('app_login') }}"><p>Se connecter</p></a>
+    <a class="loginBtn" href="{{ path('app_login') }}"><p>Se connecter <i class="myBlue fa fa-power-off" style="font-size:18px"></i></p></a>
    </div>
    {% endif %} 
   <div class="col-1 loginBtn">
-    <a class="loginBtn" href="{{ path('app_register') }}"><p>S'inscrire</p></a>
+    <a class="loginBtn" href="{{ path('app_register') }}"><p>S'inscrire <i class="myBlue fas fa-address-book" style="font-size:18px"></i></p></a>
    </div>
    {% if is_granted('ROLE_ADMIN') %}
    <div class="col-1 loginBtn">

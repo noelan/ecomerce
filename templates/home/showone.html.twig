@@ -2,43 +2,56 @@
 {% block body %}
 <div class="container">
 	<div class="row">
-		<div class="col-7">
+		<div class="col-7 text-center">
 			<img src="{{ article.picture }}">
-			<br><br>
-			
+			<br><br>			
 		</div>
 		<div class="col-5">
 			<br><br>
-			<h3>{{ article.name }}</h3>
-			<p>Note : {{ article.note }}</p>
+			<h2 class="myBlue">{{ article.name }}</h2>
 			<p>Prix : {{ article.price }} €</p>	
-				<form method="POST" action="{{ path('add_cart', {'id': article.id}) }}"> 
-				<p class="justify-content-between">Taille :
-					<select name="size">
-						{% for size in article.size %}
-							<option value="{{ size }}">{{ size }}</option>
-						{% endfor %}
-					</select>
-				</p>	
-				<p>Quantité :
-				<select name="quantity">		
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-					<option value="5">5</option>
+			<form method="POST" action="{{ path('add_cart', {'id': article.id}) }}"> 
+			<p class="justify-content-between">Taille :
+				<select name="size">
+					{% for size in article.size %}
+						<option value="{{ size }}">{{ size }}</option>
+					{% endfor %}
 				</select>
-				</p>	
-				<button type="submit" class="btn btn-success btn-lg" style="margin-left:3rem;">Ajouter au panier</button>
-				</form>
-			
+			</p>	
+			<p>Quantité :
+			<select name="quantity">		
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+			</select>
+			</p>	
+			<button type="submit" class="btn btn-success btn-lg" style="margin-left:3rem;">Ajouter au panier</button>
+			</form>
+		
 			<br><br>
-				<h2>Détails du produit :</h2>
-				<p>{{ article.description }}</p>
-			
-			
+			<h2>Détails du produit :</h2>
+			<p>{{ article.description }}</p>		
 		</div>
 	</div><hr>	
-	<h3>Produit que vous pouriez aimer</h3>
+	<h3 class="text-center">Produit que vous pouriez aimer :</h3><br><br>
+	<div class="row">
+	{% for article in articlesProposition %}
+		<div class="col-2">
+			<div class="card" style="width: 18rem;border:none;">
+				<a href="{{ path('show_one', {'id': article.id}) }}">
+					<img src="{{ article.picture }}" class="card-img-top" alt="...">
+				</a>
+				<div class="card-body">
+					<p class="cabin card-text text-center font-weight-bold" style="font-size:2rem;">{{ article.name }}</p>
+					<p class="myBlue text-center font-weight-bold" style="font-size:2rem;">{{ article.price }} €</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-1">
+		</div>
+	{% endfor %}
+	</div>	
 </div>
 {% endblock %}

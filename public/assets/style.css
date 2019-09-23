@@ -1,5 +1,9 @@
 @import url('http://fonts.googleapis.com/css?family=Lobster');
-@import url('http://fonts.googleapis.com/css?family=Cabin');
+@import url('https://fonts.googleapis.com/css?family=Bree+Serif&display=swap');
+
+.myBlue {
+  color: #5F94E4;
+}
 
 h3 {
   font-family: 'Lobster';
@@ -15,7 +19,7 @@ body {
 } 
 
 .cabin {
-  font-family: 'Cabin';
+  font-family: 'Bree Serif';
 }
 
 ul {
@@ -31,8 +35,9 @@ li {
 
 .funnyShop {
 	padding-top: 2rem;
-	font-weight: bold;
+  font-weight: bold;
 }
+
 
 .logo {
 	width:80%;
@@ -107,4 +112,11 @@ li {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.myDescription {
+  height: 6rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: justify;
 }

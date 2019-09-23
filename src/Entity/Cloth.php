@@ -44,7 +44,7 @@ class Cloth
     private $picture;
 
     /**
-     * @ORM\Column(type="string", length=1000)
+     * @ORM\Column(type="text", length=255)
      */
     private $description;
 

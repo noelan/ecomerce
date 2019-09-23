@@ -19,6 +19,20 @@ class ClothRepository extends ServiceEntityRepository
         parent::__construct($registry, Cloth::class);
     }
 
+    /**
+    * @return 4 ranndom article objetcs
+    */
+
+    public function findRandom()
+    {   
+        $randomNumber = rand(0,45);
+        $qb = $this->createQueryBuilder('c')
+                   ->setMaxResults(4)
+                   ->setFirstResult($randomNumber)
+                   ->getQuery();
+
+        return $qb->execute();           
+    }
     // /**
     //  * @return Cloth[] Returns an array of Cloth objects
     //  */

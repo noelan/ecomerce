@@ -9,12 +9,35 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/cloth")
+ * @IsGranted("ROLE_ADMIN")
  */
 class ClothController extends AbstractController
 {
+    
+    /**
+     * @Route("/{id}/edit", name="cloth_edit", methods={"GET","POST"})
+     */
+    public function edit(Request $request, Cloth $cloth): Response
+    {
+        $form = $this->createForm(ClothType::class, $cloth);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('cloth_index');
+        }
+
+        return $this->render('cloth/edit.html.twig', [
+            'cloth' => $cloth,
+            'form' => $form->createView(),
+        ]);
+    }
+    
     /**
      * @Route("/", name="cloth_index", methods={"GET"})
      */
@@ -69,30 +92,10 @@ class ClothController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="cloth_edit", methods={"GET","POST"})
-     */
-    public function edit(Request $request, Cloth $cloth): Response
-    {
-        $form = $this->createForm(ClothType::class, $cloth);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('cloth_index');
-        }
-
-        return $this->render('cloth/edit.html.twig', [
-            'cloth' => $cloth,
-            'form' => $form->createView(),
-        ]);
-    }
-
-    /**
      * @Route("/{id}", name="cloth_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Cloth $cloth): Response
-    {
+    {   
         if ($this->isCsrfTokenValid('delete'.$cloth->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($cloth);

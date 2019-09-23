@@ -1,10 +1,20 @@
 {% form_theme form 'bootstrap_4_layout.html.twig' %}
+{{ form_start(form) }}
 <div class="row justify-content-center">
-
-	{{ form_start(form) }}
-	<div class="col-2">
-		{{ form_row(form.Name) }}
-	</div>  
-	    <button class="btn">{{ button_label|default('Save') }}</button>
-	{{ form_end(form) }}
+	<div class="col-3">
+	  {{ form_row(form.Name) }}
+	  {{ form_row(form.Type) }}
+	  {{ form_row(form.price) }}
+	  {{ form_row(form.note) }}
+	  {{ form_row(form.picture) }}
+	  {{ form_row(form.description) }}
+	  <button class="btn btn-success mx-auto" style="width:10rem;">{{ button_label|default('Save') }}</button><br><br>
+	 </div> 
+	 <div class="col-3 justify-content-center">
+	 	<img class="text-center" src="{{ cloth.picture }}">
+	 </div>	
+	 <div class="col-1">	 	
+	 	{{ form_row(form.Size) }}
+	 </div>	
 </div>
+{{ form_end(form) }}

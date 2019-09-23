@@ -3,9 +3,7 @@
 {% block title %}New Cloth{% endblock %}
 
 {% block body %}
-    <h1>Create new Cloth</h1>
-
+    <h1 class="text-center">Creer un nouvel article</h1>
+    <a href="{{ path('cloth_index') }}"><p class="text-center">Retour à la liste</p></a>
     {{ include('cloth/_form.html.twig') }}
-
-    <a href="{{ path('cloth_index') }}">back to list</a>
 {% endblock %}
