@@ -2,8 +2,8 @@
 {% block body %}
 	<h2 class="text-center">Voici votre panier</h2><hr>
 	<div class="container">
-	{% if app.user.cart is null %}
-		<p>Votre panier est vide</p>
+	{% if app.user.cart is not defined %}
+		<h2 class="text-center">Votre panier est vide</h2>
 	{% else %}
 		{% for article in articles %}
 			<div class="row">
@@ -14,6 +14,7 @@
 					<p>{{ article.name }}</p>
 					<p>{{ article.description }}</p>
 					<p>{{ article.price }}</p>
+					<p>{{ article.id }}</p>
 					{% for key,value in app.session.get('cart')  %}
 						{% if app.session.get('cart')|length == loop.index %}
 					<p>taille :{{ key }}</p>
@@ -28,7 +29,16 @@
 			</form>
 				{% if loop.index == 1 %}
 					<div class="totalPrice col-3">
-						<h3>Prix total : <span class="text-info text-right">100 €</span></h3>
+						<h3>Prix total : 
+							<span class="text-info text-right">
+								{% for key,value in app.session.get('cart')  %}
+									{% set total = total + article.price * value  %}
+									{% if loop.index == app.session.get('cart')|length %}
+										{{ total ~ " €" }}
+									{% endif %} 
+								{% endfor %}
+							</span>
+						</h3>
 						<button class="btn btn-info" style="width:11rem;">Passer commande</button>
 				    </div>
 			    {% endif %}

@@ -44,13 +44,18 @@ class HomeController extends AbstractController
     /* @Route("/showCart", name="show_cart")
     */
     public function showCart(SessionInterface $session, ClothRepository $ClothRepository)
-    {   $articles = $session->get('cart');
+    {   
+
+        $articles = $session->get('cart');
         $names = [];
-        foreach ($articles as $key => $value) {
-            array_push($names, $key);
+        if($articles != 0) {
+            foreach ($articles as $key => $value) {
+                array_push($names, $key);
+            }
         }
         $cloth = $ClothRepository->FindBy(['Name' => $names]);
-        return $this->render('home/showcart.html.twig', ['articles' => $cloth]);
+        return $this->render('home/showcart.html.twig', ['articles' => $cloth,
+                                                         'total' => 0]);
     }
 
     // /**

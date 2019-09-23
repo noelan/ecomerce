@@ -42,6 +42,11 @@ class User implements UserInterface
      */
     private $cart = null;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $Token;
+
     public function __construct()
     {
         $this->cart = new ArrayCollection();
@@ -147,6 +152,18 @@ class User implements UserInterface
         if ($this->cart->contains($cart)) {
             $this->cart->removeElement($cart);
         }
+
+        return $this;
+    }
+
+    public function getToken(): ?int
+    {
+        return $this->Token;
+    }
+
+    public function setToken(int $Token): self
+    {
+        $this->Token = $Token;
 
         return $this;
     }

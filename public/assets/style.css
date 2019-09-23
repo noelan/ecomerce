@@ -9,11 +9,22 @@ body {
   font-family: 'Cabin';
 } 
 
-p {
-  font-family: 'Lobster';
+
+ul {
+  justify-content: center;
+  text-align: center;
 }
 
+li {
+  font-family: 'Lobster';
+  margin: auto;
+  padding: auto;
+}
 
+li:hover {
+  color:red;
+  background-color: red;
+}
 .funnyShop {
 	padding-top: 2rem;
 	font-weight: bold;

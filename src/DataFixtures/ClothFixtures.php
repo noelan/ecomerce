@@ -88,9 +88,10 @@ class ClothFixtures extends Fixture
         foreach ($types as $type => $picture) {
             for ($i=0; $i < count($picture) ; $i++) { 
                 $cloth = new Cloth();
+                $name = (ucfirst($faker->word) . rand(0,100));
                 $cloth->setType($type)
                       ->setPrice(rand(10, 20))
-                      ->setName(ucfirst($faker->word))
+                      ->setName($name)
                       ->setNote(rand(2, 5))
                       ->setDescription($faker->sentence)
                       ->setPicture($picture[$i])
