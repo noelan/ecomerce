@@ -18,14 +18,20 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/register", name="app_register")
      */
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginAuthenticator $authenticator, \Swift_Mailer $mailer): Response
+    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginAuthenticator $authenticator, \Swift_Mailer $mailer, UserRepository $userRepository): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
+            $email = $userRepository->findOneBy(['email' => $_POST['registration_form']['email']]);
+            if($email) {
+                $this->addFlash('danger', 'Cette adresse email est déja utilisé'); 
+                return $this->render('registration/register.html.twig', [
+                    'registrationForm' => $form->createView(),
+                ]);
+            }
             $user->setPassword(
                 $passwordEncoder->encodePassword(
                     $user,
@@ -33,7 +39,8 @@ class RegistrationController extends AbstractController
                 )
             )
                 ->setToken(0)
-                ->setRoles(['ROLE_USER']);
+                ->setRoles(['ROLE_USER']);    
+            $user->setEmail($_POST['registration_form']['email']); 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
