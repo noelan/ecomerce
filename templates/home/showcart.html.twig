@@ -5,7 +5,6 @@
 		<h2 class="text-center">Votre panier est vide</h2>
 	{% else %}
 		{% for article in app.session.get('cart') %}
-	
 			<div class="row">
 				<div class="col-3">
 					<img class="cartImg" src="{{ article.picture }}">
@@ -20,14 +19,15 @@
 				<form action="{{ path('remove_cart', {'id':article.id}) }}" method="POST">
 					<button type="submit" style="background-color:white;border:none;"><i class="fas fa-trash" style="font-size:24px;color:grey;"></i></button>
 				</form>	
-		{% if loop.index == 1 %}
-		<div class="totalPrice col-3">
-			<h3>Prix total € : <span class="myBlue">{{ app.session.get('totalCart') }}</span></h3>
-			<button class="btn btn-info" style="width:11rem;">Passer commande</button>
-	    </div>
-	    {% endif %}		
+				{% if loop.index == 1 %}
+				<div class="totalPrice col-3">
+					<h3>Prix total € : <span class="myBlue">{{ app.session.get('totalCart') }}</span></h3>
+					<button class="btn btn-info" style="width:11rem;">Passer commande</button>
+			    </div>
+			    {% endif %}	
+		    </div>	<hr>    		
 		{% endfor %}	
 	{% endif %}
-   		</div>
+   		
     </div>
 {% endblock %}
