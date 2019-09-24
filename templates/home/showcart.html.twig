@@ -4,48 +4,30 @@
 	{% if app.session.get('cart') == 0 %}
 		<h2 class="text-center">Votre panier est vide</h2>
 	{% else %}
-		{% for article in articles %}
+		{% for article in app.session.get('cart') %}
+	
 			<div class="row">
 				<div class="col-3">
 					<img class="cartImg" src="{{ article.picture }}">
 				</div>
 				<div class="col-4">
-					<p>{{ article.name }}</p>
-					<p>{{ article.description }}</p>
-					<p>{{ article.price }}</p>
-					<p>{{ article.id }}</p>
-					{% for key,value in app.session.get('cart')  %}
-						{% if app.session.get('cart')|length == loop.index %}
-					<p>taille :{{ key }}</p>
-						{% endif %}
-						{% if key == article.name %}
-					<p>quantité	: {{ value }}</p>
-						{% endif %}
-					{% endfor %}
+					<p class="cabin">{{ article.name }}</p>
+					<p class="cabin">Prix : {{ article.price }}</p>
+					<p class="cabin">Taille : {{ article.size }}  </p>
+					<p class="cabin">Quantité : {{ article.quantity }}</p>
+					<p class="cabin">{{ article.description }}</p>			
 				</div>
-			<form action="{{ path('remove_cart', {'id':article.id}) }}" method="POST">
-				<button type="submit" style="background-color:white;border:none;"><i class="fas fa-times" style="font-size:24px;color:red;"></i></button>
-			</form>
-				{% if loop.index == 1 %}
-					<div class="totalPrice col-3">
-						<h3>Prix total : 
-							<span class="text-info text-right">
-								{% for key,value in app.session.get('cart')  %}
-									{% set total = total + article.price * value  %}
-									{% if loop.index == app.session.get('cart')|length %}
-										{{ total ~ " €" }}
-									{% endif %} 
-								{% endfor %}
-							</span>
-						</h3>
-						<button class="btn btn-info" style="width:11rem;">Passer commande</button>
-				    </div>
-			    {% endif %}
-			</div>
-			<div class="col-8">
-				<hr>
-		    </div> 
-		{% endfor %}
+				<form action="{{ path('remove_cart', {'id':article.id}) }}" method="POST">
+					<button type="submit" style="background-color:white;border:none;"><i class="fas fa-trash" style="font-size:24px;color:grey;"></i></button>
+				</form>	
+		{% if loop.index == 1 %}
+		<div class="totalPrice col-3">
+			<h3>Prix total € : <span class="myBlue">{{ app.session.get('totalCart') }}</span></h3>
+			<button class="btn btn-info" style="width:11rem;">Passer commande</button>
+	    </div>
+	    {% endif %}		
+		{% endfor %}	
 	{% endif %}
+   		</div>
     </div>
 {% endblock %}

@@ -44,19 +44,9 @@ class HomeController extends AbstractController
     /**
     /* @Route("/showCart", name="show_cart")
     */
-    public function showCart(SessionInterface $session, ClothRepository $ClothRepository)
+    public function showCart()
     {   
-
-        $articles = $session->get('cart');
-        $names = [];
-        if($articles != 0) {
-            foreach ($articles as $key => $value) {
-                array_push($names, $key);
-            }
-        }
-        $cloth = $ClothRepository->FindBy(['Name' => $names]);
-        return $this->render('home/showcart.html.twig', ['articles' => $cloth,
-                                                         'total' => 0]);
+        return $this->render('home/showcart.html.twig');
     }
 
     // /**
@@ -98,29 +88,63 @@ class HomeController extends AbstractController
     public function addCart($id, ClothRepository $ClothRepository, SessionInterface $session)
     {   
         $array = [
-                    'jean' => ['quantiter' => 4, 'taille' =>'XL'],
-                ];       
-        if (!$session->has('cart')) {
-            $session->set('cart', 0); // if total doesn’t exist in session, it is initialized.
+                    'article1Id' => ['quantiter' => 4, 'taille' =>'XL'],
+                    'article2Id' => ['quantiter' => 4, 'taille' =>'XL'],
+                ];  
+        if (!$session->has('cart')){
+            $session->set('cart', []); // if cart doesn’t exist in session, it is initialized.
         }
-        $cart = $session->get('cart'); // get actual value in session with ‘total' key.
+        $cart = $session->get('cart');
+
         $cloth = $ClothRepository->findOneBy(['id' => $id]);
         $quantity = $_POST['quantity'];
         $size = $_POST['size'];
-        $arrayArticle = [];
-        for ($i=0; $i < $quantity ; $i++) { 
-            array_push($arrayArticle, $cloth->getName());
+        $id = $cloth->getId();
+        $description = $cloth->getDescription();
+        $name = $cloth->getName();
+        $picture = $cloth->getPicture();
+        $price = $cloth->getPrice();
+        $total = 0;
+        $cartArray = $cart;
+        $articleToAdd = [ 
+                        'size' => $size, 
+                        'quantity' => $quantity,
+                        'id'=> $id,
+                        'description' => $description,
+                        'name' => $name,
+                        'picture' => $picture,
+                        'price' => $price,                            
+                        ];
+
+        array_push($cartArray, $articleToAdd);
+        foreach ($cartArray as $article) {
+            $total += $article['price'] * $article['quantity'];
         }
-        if($cart != 0) {
-            foreach ($cart as $key => $value) {
-                for ($i=0; $i < $value ; $i++) { 
-                    array_push($arrayArticle, $key);
-                }       
-            }      
+        $session->set('cart', $cartArray);
+        if (!$session->has('totalCart')){
+            $session->set('totalCart', 0); // if cart doesn’t exist in session, it is initialized.
         }
-        array_push($arrayArticle, $size);  
-        $countCart = array_count_values($arrayArticle);
-        $session->set('cart', $countCart);
+        $session->set('totalCart', $total);
         return $this->redirectToRoute('show_cart');
+        // $cart = $session->get('cart'); // get actual value in session with ‘total' key.
+        // $cloth = $ClothRepository->findOneBy(['id' => $id]);
+        // $quantity = $_POST['quantity'];
+        // $size = $_POST['size'];
+        // $arrayArticle = [];
+        // for ($i=0; $i < $quantity ; $i++) { 
+        //     array_push($arrayArticle, $cloth->getName());
+        // }
+        // if($cart != 0) {
+        //     foreach ($cart as $key => $value) {
+        //         for ($i=0; $i < $value ; $i++) { 
+        //             array_push($arrayArticle, $key);
+        //         }       
+        //     }      
+        // }
+        // array_push($arrayArticle, $size);  
+        // $countCart = array_count_values($arrayArticle);
+        // $session->set('cart', $countCart);
+
+        
     }
 }
