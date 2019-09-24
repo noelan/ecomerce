@@ -1,15 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Inscription{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+<!--     <h1 class="text-center cabin">Inscription</h1>
+<div class="container col-3">
+   
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+        
+        
 
-        <button class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+        
+    
+</div>     -->
+
+<!-- Default form login -->
+<div class="row justify-content-center">
+	<div class="col-3">
+		 {{ form_start(registrationForm, {'attr': {'class':'text-center border border-light p-5'}}) }}
+			<p class="h4 mb-4 text-center">Sign in</p>
+
+			 {{ form_row(registrationForm.email, {'attr': {'class':'form-control mb-4'}}) }}
+			 {{ form_label(registrationForm.email, 'Mot de passe')}}
+			 {{ form_widget(registrationForm.plainPassword, {'attr': {'class':'form-control mb-4'}}) }}
+			 {{ form_row(registrationForm.agreeTerms) }}
+			<button class="btn btn-info btn-block my-4">Sign in</button>
+		{{ form_end(registrationForm) }}
+	</div>
+</div>
+
 {% endblock %}

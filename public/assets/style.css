@@ -1,6 +1,10 @@
 @import url('http://fonts.googleapis.com/css?family=Lobster');
 @import url('https://fonts.googleapis.com/css?family=Bree+Serif&display=swap');
 
+
+body {
+  padding-top: 1rem;
+}
 .myBlue {
   color: #5F94E4;
 }
@@ -121,8 +125,11 @@ li {
   text-align: justify;
 }
 
-/*.footer {
-position:fixed;
-bottom:0;
-width:100%;
-}*/
+.pictureShowOne {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}

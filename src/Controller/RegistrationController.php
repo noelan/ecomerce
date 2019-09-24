@@ -37,7 +37,7 @@ class RegistrationController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
-
+            $this->addFlash('success', 'Votre compte a bien été creer veuillez valider votre email');  
             // do anything else you need here, like send an email
             $message = (new \Swift_Message('Votre compte a bien été crée. Pour l\'activer merci de valider votre adresse mail'))
                 ->setFrom('noel.an.dev@gmail.com')
@@ -48,7 +48,8 @@ class RegistrationController extends AbstractController
                         ['email' => $_POST['registration_form']['email']]),
                         'text/html'
                         );
-            $mailer->send($message);    
+            $mailer->send($message);
+
             return $guardHandler->authenticateUserAndHandleSuccess(
                 $user,
                 $request,

@@ -1,8 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-	<h2 class="text-center">Voici votre panier</h2><hr>
 	<div class="container">
-	{% if app.user.cart is not defined %}
+	{% if app.session.get('cart') == 0 %}
 		<h2 class="text-center">Votre panier est vide</h2>
 	{% else %}
 		{% for article in articles %}
@@ -25,7 +24,7 @@
 					{% endfor %}
 				</div>
 			<form action="{{ path('remove_cart', {'id':article.id}) }}" method="POST">
-				<button class="btn" type="submit"><i class="fa fa-close" style="font-size:24px;color:red;"></i></button>
+				<button type="submit" style="background-color:white;border:none;"><i class="fas fa-times" style="font-size:24px;color:red;"></i></button>
 			</form>
 				{% if loop.index == 1 %}
 					<div class="totalPrice col-3">
