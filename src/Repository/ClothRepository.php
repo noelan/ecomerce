@@ -20,7 +20,7 @@ class ClothRepository extends ServiceEntityRepository
     }
 
     /**
-    * @return 4 ranndom article objetcs
+    * @return 4 random article objetcs
     */
 
     public function findRandom()
@@ -33,6 +33,29 @@ class ClothRepository extends ServiceEntityRepository
 
         return $qb->execute();           
     }
+
+    /**
+    * @return array of cloth objetc by size
+    */
+    public function findBySize($size, $category) {
+        $em = $this->getEntityManager();
+
+        $query = $em->createQuery(
+            'SELECT cloth
+             FROM App\Entity\Cloth cloth
+             JOIN cloth.sizes size
+             WHERE size.name =:size 
+             AND cloth.Type=:category'
+        );
+        $query->setParameters(array(
+            'size' => $size,
+            'category' => $category,
+         ));
+        return $query->getResult();
+    }
+
+    //SELECT cloth.name, size.name, cloth.type, cloth.price, cloth.picture, cloth.description FROM cloth_size JOIN size ON size.id = cloth_size.size_id JOIN cloth ON cloth.id = cloth_size.cloth_id WHERE size.name =:size AND cloth.type=:category; 
+
     // /**
     //  * @return Cloth[] Returns an array of Cloth objects
     //  */

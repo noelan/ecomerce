@@ -21,12 +21,17 @@ class HomeController extends AbstractController
     }
 
     /**
-    * @Route("/show/{category}", name="showByCategory")
+    * @Route("/show/{category}/{size}/{color}/{material}", name="showByCategory")
     */
-    public function showByCategory(ClothRepository $ClothRepository, $category)
+    public function showByFilters(ClothRepository $ClothRepository, $category, $size = null, $color = null, $material = null)
     {   
+        if($size != null) {
+        $articles = $ClothRepository->findBySize($size, $category);
+        }else{
+            $articles = $ClothRepository->findBy(['Type' => $category]);
+        }
     	return $this->render('home/showbyCategory.html.twig', [
-    		'articles' => $ClothRepository->findBy(['Type' => $category]),
+    		'articles' => $articles,
     	]);
     }
 
