@@ -49,18 +49,31 @@ class Cloth
     private $description;
 
     /**
-     * @ORM\Column(type="array")
-     */
-    private $Size = [];
-
-    /**
      * @ORM\ManyToMany(targetEntity="App\Entity\User", mappedBy="cart")
      */
     private $users = null;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Color", inversedBy="cloths")
+     */
+    private $colors;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Material", inversedBy="cloths")
+     */
+    private $materials;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="App\Entity\Size", inversedBy="cloths")
+     */
+    private $sizes;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
+        $this->colors = new ArrayCollection();
+        $this->materials = new ArrayCollection();
+        $this->sizes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -139,18 +152,7 @@ class Cloth
 
         return $this;
     }
-
-    public function getSize(): ?array
-    {
-        return $this->Size;
-    }
-
-    public function setSize(array $Size): self
-    {
-        $this->Size = $Size;
-
-        return $this;
-    }
+    
 
     /**
      * @return Collection|User[]
@@ -175,6 +177,84 @@ class Cloth
         if ($this->users->contains($user)) {
             $this->users->removeElement($user);
             $user->removeCart($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Color[]
+     */
+    public function getColors(): Collection
+    {
+        return $this->colors;
+    }
+
+    public function addColor(Color $color): self
+    {
+        if (!$this->colors->contains($color)) {
+            $this->colors[] = $color;
+        }
+
+        return $this;
+    }
+
+    public function removeColor(Color $color): self
+    {
+        if ($this->colors->contains($color)) {
+            $this->colors->removeElement($color);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Material[]
+     */
+    public function getMaterials(): Collection
+    {
+        return $this->materials;
+    }
+
+    public function addMaterial(Material $material): self
+    {
+        if (!$this->materials->contains($material)) {
+            $this->materials[] = $material;
+        }
+
+        return $this;
+    }
+
+    public function removeMaterial(Material $material): self
+    {
+        if ($this->materials->contains($material)) {
+            $this->materials->removeElement($material);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Size[]
+     */
+    public function getSizes(): Collection
+    {
+        return $this->sizes;
+    }
+
+    public function addSize(Size $size): self
+    {
+        if (!$this->sizes->contains($size)) {
+            $this->sizes[] = $size;
+        }
+
+        return $this;
+    }
+
+    public function removeSize(Size $size): self
+    {
+        if ($this->sizes->contains($size)) {
+            $this->sizes->removeElement($size);
         }
 
         return $this;

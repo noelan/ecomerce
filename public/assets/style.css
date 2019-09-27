@@ -1,31 +1,27 @@
 @import url('http://fonts.googleapis.com/css?family=Lobster');
 @import url('https://fonts.googleapis.com/css?family=Bree+Serif&display=swap');
-
-
-body {
-  padding-top: 1rem;
-}
-.myBlue {
-  color: #5F94E4;
-}
-
-h3 {
-  font-family: 'Lobster';
+/* Color and fonts */
+.cabin {
+  font-family: 'Bree Serif';
 }
 
 .lobster {
   font-family: 'Lobster';
 }
 
+.myBlue {
+  color: #5F94E4;
+}
 
 body {
   font-family: 'Cabin';
-} 
-
-.cabin {
-  font-family: 'Bree Serif';
 }
 
+h3 {
+  font-family: 'Lobster';
+}
+
+/* Navbar */;
 ul {
   justify-content: center;
   text-align: center;
@@ -38,26 +34,25 @@ li {
 }
 
 .funnyShop {
-	padding-top: 2rem;
+  padding-top: 2rem;
   font-weight: bold;
 }
 
-
 .logo {
-	width:80%;
+  width:80%;
 }
 
 .myNavbar > li {
-	padding-right:3rem;
-}	
+  padding-right:3rem;
+} 
 
 .myNavbar > li > a{
-	font-weight: bold;
-	font-size: 1.2rem;
+  font-weight: bold;
+  font-size: 1.2rem;
 }
 
 .panierBtn {
-	text-align: center;
+  text-align: center;
 }
 
 .panierBtn > p {
@@ -70,7 +65,7 @@ li {
 }
 
 .loginBtn {
-	text-align: center;
+  text-align: center;
   color:black;
 }
 
@@ -83,6 +78,15 @@ li {
   transform: translate(-50%, -50%);
   white-space: nowrap;
 }
+
+/* Useful things */
+.ellipsis{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Show Cart */
 
 .size {
   border:solid;

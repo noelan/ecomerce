@@ -5,9 +5,10 @@ namespace App\DataFixtures;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use App\Entity\Cloth;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Faker;
 
-class ClothFixtures extends Fixture
+class ClothFixtures extends Fixture implements DependentFixtureInterface 
 {
     public function load(ObjectManager $manager)
     {
@@ -96,8 +97,17 @@ class ClothFixtures extends Fixture
                       ->setName($name)
                       ->setNote(rand(2, 5))
                       ->setDescription($faker->paragraph)
-                      ->setPicture($picture[$i])
-                      ->setSize(['S', 'M', 'L', 'XL', 'XXL','3XL', '4Xl', '5XL']);
+                      ->setPicture($picture[$i]);
+                      for ($p=0; $p <13 ; $p++) { 
+                        $cloth->addSize($this->getReference('size' . rand(0,12)));
+                      }
+                      for ($j=0; $j <3 ; $j++) { 
+                        $cloth->addMaterial($this->getReference('material' . rand(0,6)));
+                      }
+                      for ($k=0; $k <3 ; $k++) { 
+                        $cloth->addColor($this->getReference('color' . rand(0,6)));
+                      }
+                      
                 $manager->persist($cloth);
             }
            
@@ -132,4 +142,12 @@ class ClothFixtures extends Fixture
 
         $manager->flush();
     }
+
+  public function getDependencies()
+  {
+    return [SizeFixtures::class,
+            MaterialFixtures::class,
+            ColorFixtures::class,
+           ];
+  }
 }
