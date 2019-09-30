@@ -1,12 +1,110 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-<div class="container">
+<div class="container-fluid">
 	{% if  articles %}
 		<h1 class="cabin myBlue text-center">Nos {{ articles[0].type }}</h1><hr>
 	{% endif %}
 	<div class="row">
+		<div class="col-2" style="position:absolute">
+			<div class="accordion" id="accordionExample">
+			  <div class="card z-depth-0 bordered">
+			    <div class="card-header" id="headingOne">
+			      <h5 class="mb-0">
+			        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+			          aria-expanded="true" aria-controls="collapseOne">
+			          Taille
+			        </button>
+			      </h5>
+			    </div>
+			    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+			      data-parent="#accordionExample">
+			      <div class="card-body">
+			      	{% for size in sizes %}    		
+			      			{% if currentParameters == null %}
+			        			<a href="{{ path('showByCategory', {'category':articles[0].type, 'currentParameters': 'sizes-' ~ size.name}) }}"><p>{{ size.name }} <input type="checkbox" id="sizes-{{ size.name }}" name="scales" ></p></a>
+			        			
+			        		{% else %}
+			        			{% set Parameter = ( currentParameters  ~ '+sizes-' ~  size.name )    %}
+			        				<a href="{{ path('showByCategory', {'category':articles[0].type, 'currentParameters':Parameter}) }}"><p>{{ size.name }}
+										{% if 'sizes-' ~ size.name in currentParameters   %}	
+					        				<input type="checkbox" id="sizes-{{ size.name }}" checked>
+					        			{% else %}
+					        				<input type="checkbox" id="sizes-{{ size.name }}">
+					        			{% endif %}
+			        					</p>
+			        				</a>	
+			        		{% endif %}	
+			        {% endfor %}
+			      </div>
+			    </div>
+			  </div>
+			  <div class="card z-depth-0 bordered">
+			    <div class="card-header" id="headingOne">
+			      <h5 class="mb-0">
+			        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTwo"
+			          aria-expanded="true" aria-controls="collapseOne">
+			          Matière
+			        </button>
+			      </h5>
+			    </div>
+			    <div id="collapseTwo" class="collapse show" aria-labelledby="headingOne"
+			      data-parent="#accordionExample">
+			      <div class="card-body">
+			      	{% for material in materials %}
+			        	{% if currentParameters == null %}
+			        			<a href="{{ path('showByCategory', {'category':articles[0].type, 'currentParameters': 'materials-' ~ material.name}) }}"><p>{{ material.name }}</p></a>
+			        			<input type="checkbox" id="materials-{{ material.name }}" name="scales" >
+			        		{% else %}
+			        			{% set Parameter = ( currentParameters  ~ '+materials-' ~  material.name )    %}
+			        				<a href="{{ path('showByCategory', {'category':articles[0].type, 'currentParameters':Parameter}) }}"><p>{{ material.name }}</p></a>
+			        			{% if 'materials-' ~ material.name in currentParameters   %}	
+			        				<input type="checkbox" id="materials-{{ material.name }}" checked>
+			        			{% else %}
+			        				<input type="checkbox" id="materials-{{ material.name }}">
+			        			{% endif %}	
+			        		{% endif %}	
+			        {% endfor %}
+			      </div>
+			    </div>
+			  </div>
+			  <div class="card z-depth-0 bordered">
+			    <div class="card-header" id="headingOne">
+			      <h5 class="mb-0">
+			        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseThree"
+			          aria-expanded="true" aria-controls="collapseOne">
+			          Color
+			        </button>
+			      </h5>
+			    </div>
+			    <div id="collapseThree" class="collapse show" aria-labelledby="headingOne"
+			      data-parent="#accordionExample">
+			      <div class="card-body">
+			      	{% for color in colors %}
+			        	{% if currentParameters == null %}
+			        			<a href="{{ path('showByCategory', {'category':articles[0].type, 'currentParameters': 'colors-' ~ color.name}) }}"><p>{{ color.name }}</p></a>
+			        			<input type="checkbox" id="colors-{{ color.name }}" name="scales" >
+			        		{% else %}
+			        			{% set Parameter = ( currentParameters  ~ '+colors-' ~  color.name )    %}
+			        				<a href="{{ path('showByCategory', {'category':articles[0].type, 'currentParameters':Parameter}) }}"><p>{{ color.name }}</p></a>
+			        			{% if 'colors-' ~ color.name in currentParameters %}	
+			        				<input type="checkbox" id="colors-{{ color.name }}" checked>
+			        			{% else %}
+			        			{% set Parameter = ( currentParameters  ~ '+colors-' ~  color.name )    %}
+			        				<input type="checkbox" id="colors-{{ color.name }}">
+			        			{% endif %}		
+			        		{% endif %}	
+			        {% endfor %}
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		</div>
 	{% for article in articles %}
-	<div class="col-3">
+	{% if (loop.index % 4) and (loop.index % 4 == 1) %}	
+		<div class="col-2 offset-lg-2" style="position:relative">
+			{% else %}
+			<div class="col-2" style="position:relative">
+	{% endif %}
 		<div class="card" style="width: 18rem;border:none;">
 			<a href="{{ path('show_one', {'id': article.id}) }}">
 				<img src="{{ article.picture }}" class="card-img-top" alt="...">
@@ -14,13 +112,21 @@
 			<div class="card-body">
 				<p class="cabin card-text text-center font-weight-bold ellipsis" style="font-size:2rem;">{{ article.name }}</p>
 				<p class="myDescription text-center font-weight-light">{{ article.description }}</p>
+				{% for size in article.sizes %}
+					<p>{{ size.name }}</p>
+				{% endfor %}
+				{% for color in article.colors %}
+					<p>{{ color.name }}</p>
+				{% endfor %}
+				{% for material in article.materials %}
+					<p>{{ material.name }}</p>
+				{% endfor %}
 				<p class="myBlue text-center font-weight-bold" style="font-size:2rem;">{{ article.price }} €</p>
 			</div>
 		</div>
 	</div>
-		<div class="col-1">
-	</div>
-	{% if loop.index % 3 == 0 %}
+
+	{% if loop.index % 4 == 0 %}
 	</div>
 		<hr>
 	<div class="row">	
@@ -28,4 +134,8 @@
 	{% endfor %}
 	</div>
 </div>
+</div>
+<script>
+{# include 'checkBox.js' #}
+</script>
 {% endblock %}

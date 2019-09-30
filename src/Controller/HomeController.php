@@ -5,6 +5,10 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\ClothRepository;
+use App\Repository\SizeRepository;
+use App\Repository\MaterialRepository;
+use App\Repository\ColorRepository;
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
@@ -21,17 +25,35 @@ class HomeController extends AbstractController
     }
 
     /**
-    * @Route("/show/{category}/{size}/{color}/{material}", name="showByCategory")
+    * @Route("/show/{category}/{currentParameters}", name="showByCategory")
     */
-    public function showByFilters(ClothRepository $ClothRepository, $category, $size = null, $color = null, $material = null)
-    {   
-        if($size != null) {
-        $articles = $ClothRepository->findBySize($size, $category);
-        }else{
-            $articles = $ClothRepository->findBy(['Type' => $category]);
+    public function showByFilters(SizeRepository $SizeRepository, ClothRepository $ClothRepository,ColorRepository $ColorRepository, MaterialRepository $MaterialRepository, $category, $currentParameters = null)
+    {  
+        if($currentParameters == null) {
+              $currentParameters = [];
+              $articles = $ClothRepository->findBy(['Type' => $category]);
+        }else {
+            $explodeParameters = explode('+', $currentParameters);
+            $arrayOfParameters = [];
+            // pour chaque parametre dans mon tableau explode Parameters
+            foreach ($explodeParameters as $parameters) {
+                if (!in_array($parameters, $arrayOfParameters)) {
+                   array_push($arrayOfParameters, $parameters);    
+                }         
+            }
+
+            $articles = $ClothRepository->findByFiltersRIP($category, $arrayOfParameters);
+            //$articles = $ClothRepository->findByFilters1($category, $currentParameters);
         }
+
+        
+        
     	return $this->render('home/showbyCategory.html.twig', [
     		'articles' => $articles,
+            'sizes' => $SizeRepository->findAll(),
+            'colors' => $ColorRepository->findAll(),
+            'materials' => $MaterialRepository->findAll(),
+            'currentParameters' => $currentParameters
     	]);
     }
 
@@ -39,7 +61,9 @@ class HomeController extends AbstractController
     * @Route("/showOne/{id}", name="show_one")
     */
     public function showOne(ClothRepository $ClothRepository, $id)
-    {
+    {   
+        $article = $ClothRepository->findOneBy(['id' => $id]);
+       
     	return $this->render('home/showone.html.twig', [
     		'article' => $ClothRepository->findOneBy(['id' => $id]),
             'articlesProposition' => $ClothRepository->findRandom()
@@ -75,14 +99,37 @@ class HomeController extends AbstractController
     // }
 
     /**
+    * @Route("/show/{category}/{size}/{material}/{color}", name="showByCategory")
+    */
+    // public function showByFilters(SizeRepository $SizeRepository, ClothRepository $ClothRepository,ColorRepository $ColorRepository, MaterialRepository $MaterialRepository, $category, $size = null, $color = null, $material = null)
+    // {   
+
+    //     if($size != null) {
+    //     $articles = $ClothRepository->findByFilters($size, $category);
+    //     }else{
+    //         $articles = $ClothRepository->findBy(['Type' => $category]);
+    //     }
+    //     return $this->render('home/showbyCategory.html.twig', [
+    //         'articles' => $articles,
+    //         'sizes' => $SizeRepository->Findall(),
+    //         'colors' => $ColorRepository->Findall(),
+    //         'materials' => $MaterialRepository->Findall(),
+    //     ]);
+    // }
+
+
+    /**
     /* @Route("/removeCart/{id}", name="remove_cart")
     */
     public function removeCart($id, ClothRepository $ClothRepository, SessionInterface $session)
     {
+
         $cloth = $ClothRepository->findOneBy(['id' => $id]);
         $cart = $session->get('cart');
-        unset($cart[$cloth->getName()]);
+
+        unset($cart[$cloth->getId()]);
         // dd($cart);
+        
         $session->set('cart', $cart);
         return $this->redirectToRoute('show_cart');
     }
@@ -121,7 +168,7 @@ class HomeController extends AbstractController
                         'price' => $price,                            
                         ];
 
-        array_push($cartArray, $articleToAdd);
+        $cartArray[$id]= $articleToAdd;
         foreach ($cartArray as $article) {
             $total += $article['price'] * $article['quantity'];
         }

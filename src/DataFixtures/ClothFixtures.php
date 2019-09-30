@@ -87,8 +87,8 @@ class ClothFixtures extends Fixture implements DependentFixtureInterface
                             'https://www.tati.fr/phototheque/boutique/257250/medium/00W257191A.jpg',
                            ],
             ];
-
-        foreach ($types as $type => $picture) {
+        for ($a=0; $a < 1 ; $a++) { 
+          foreach ($types as $type => $picture) {
             for ($i=0; $i < count($picture) ; $i++) { 
                 $cloth = new Cloth();
                 $name = (ucfirst($faker->word) . rand(0,100));
@@ -106,12 +106,12 @@ class ClothFixtures extends Fixture implements DependentFixtureInterface
                       }
                       for ($k=0; $k <3 ; $k++) { 
                         $cloth->addColor($this->getReference('color' . rand(0,6)));
-                      }
-                      
+                      }               
                 $manager->persist($cloth);
             }
-           
+          }
         }
+        
         
         // foreach ($tshirts as $tshirt) {
          

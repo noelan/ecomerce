@@ -20,7 +20,7 @@
 					<button type="submit" style="background-color:white;border:none;"><i class="fas fa-trash" style="font-size:24px;color:grey;"></i></button>
 				</form>	
 				{% if loop.index == 1 %}
-				<div class="totalPrice col-3">
+				<div class="totalPrice">
 					<h3>Prix total € : <span class="myBlue">{{ app.session.get('totalCart') }}</span></h3>
 					<button class="btn btn-info" style="width:11rem;">Passer commande</button>
 			    </div>

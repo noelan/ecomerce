@@ -64,16 +64,15 @@ class Cloth
     private $materials;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Size", inversedBy="cloths")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Size")
      */
     private $sizes;
 
     public function __construct()
     {
-        $this->users = new ArrayCollection();
+        $this->sizes = new ArrayCollection();
         $this->colors = new ArrayCollection();
         $this->materials = new ArrayCollection();
-        $this->sizes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -259,4 +258,6 @@ class Cloth
 
         return $this;
     }
+
+    
 }

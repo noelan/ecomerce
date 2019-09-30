@@ -13,8 +13,8 @@
 			<form method="POST" action="{{ path('add_cart', {'id': article.id}) }}"> 
 			<p class="justify-content-between">Taille :
 				<select name="size">
-					{% for size in article.size %}
-						<option value="{{ size }}">{{ size }}</option>
+					{% for size in article.sizes %}
+						<option value="{{ size.name }}">{{ size.name }}</option>
 					{% endfor %}
 				</select>
 			</p>	
@@ -36,9 +36,9 @@
 		</div>
 	</div><hr>	
 	<h3 class="text-center">Produit que vous pouriez aimer :</h3><br><br>
-	<div class="row">
+	<div class="row justify-content-center">
 	{% for article in articlesProposition %}
-		<div class="col-2">
+		<div class="col-lg-2 col-sm-10">
 			<div class="card" style="width: 18rem;border:none;">
 				<a href="{{ path('show_one', {'id': article.id}) }}">
 					<img src="{{ article.picture }}" class="card-img-top" alt="..." height="365" width="auto">

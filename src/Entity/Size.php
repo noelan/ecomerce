@@ -23,14 +23,9 @@ class Size
      */
     private $name;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Cloth", mappedBy="sizes")
-     */
-    private $cloths;
-
     public function __construct()
     {
-        $this->cloths = new ArrayCollection();
+        
     }
 
     public function getId(): ?int
@@ -50,31 +45,4 @@ class Size
         return $this;
     }
 
-    /**
-     * @return Collection|Cloth[]
-     */
-    public function getCloths(): Collection
-    {
-        return $this->cloths;
-    }
-
-    public function addCloth(Cloth $cloth): self
-    {
-        if (!$this->cloths->contains($cloth)) {
-            $this->cloths[] = $cloth;
-            $cloth->addSize($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCloth(Cloth $cloth): self
-    {
-        if ($this->cloths->contains($cloth)) {
-            $this->cloths->removeElement($cloth);
-            $cloth->removeSize($this);
-        }
-
-        return $this;
-    }
 }
