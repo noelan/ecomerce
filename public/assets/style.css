@@ -21,6 +21,28 @@ h3 {
   font-family: 'Lobster';
 }
 
+/* Left Menu */
+.pLeftMenu {
+  font-size: 1.5rem;
+  display:inline;
+  margin-left: 0.3rem;
+  font-family: 'Lobster';
+  font-weight: lighter;
+}
+
+.typeName {
+  font-family: 'Bree Serif';
+  font-weight: bold;
+  font-size: 2rem;
+  color: #5F94E4;
+}
+
+.cardBody {
+  border-top:solid;
+  border-width: 0.1rem;
+  border-color: #1067EB;
+}
+
 /* Navbar */;
 ul {
   justify-content: center;
@@ -137,3 +159,27 @@ li {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
 }
+
+/* checkbox */
+input[type=checkbox] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+}
+
+input[type=checkbox] {
+    border-radius: 0.2rem;
+    height: 1.2rem;
+    width: 1.2rem;
+    background: white;
+    border:solid;
+    border-color: grey;
+    border-width: 0.1rem;
+    display: inline-block;
+    }
+
+input[type="checkbox"]:checked {
+  font-family: FontAwesome;
+  content: "\f046";
+  background-color: #5F94FF;
+  }
