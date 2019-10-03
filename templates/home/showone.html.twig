@@ -2,11 +2,10 @@
 {% block body %}
 <div class="container">
 	<div class="row">
-		<div class="col-7 text-center">
-			<img class="pictureShowOne" src="{{ article.picture }}">
-			<br><br>			
+		<div class="col-lg-7 col-sm-12 text-center">
+			<img class="pictureShowOne" src="{{ article.picture }}">			
 		</div>
-		<div class="col-5">
+		<div class="col-lg-5 col-sm-12 showOneDiv">
 			<br><br>
 			<h2 class="myBlue">{{ article.name }}</h2>
 			<p>Prix : {{ article.price }} €</p>	
@@ -38,13 +37,13 @@
 	<h3 class="text-center">Produit que vous pouriez aimer :</h3><br><br>
 	<div class="row justify-content-center">
 	{% for article in articlesProposition %}
-		<div class="col-lg-2 col-sm-10">
+		<div class="col-lg-2 col-sm-12 couldLike">
 			<div class="card" style="width: 18rem;border:none;">
 				<a href="{{ path('show_one', {'id': article.id}) }}">
 					<img src="{{ article.picture }}" class="card-img-top" alt="..." height="365" width="auto">
 				</a>
 				<div class="card-body">
-					<p class="cabin card-text text-center font-weight-bold" style="font-size:2rem;">{{ article.name }}</p>
+					<p class=" ellipsis cabin card-text text-center font-weight-bold" style="font-size:2rem;">{{ article.name }}</p>
 					<p class="myBlue text-center font-weight-bold" style="font-size:2rem;">{{ article.price }} €</p>
 				</div>
 			</div>

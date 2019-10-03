@@ -15,13 +15,13 @@ class ColorFixtures extends Fixture
         // $manager->persist($product);
         
     	$colors = [
-    				 'red' => 'DE1212',
-    				 'blue' => '123BDE',
+    				 'red' => 'DC143C',
+    				 'blue' => '4682B4',
     				 'white' => 'FFFFFF',
     				 'black' => '000000',
-    				 'orange' => 'E58A03',
-    				 'yellow' => 'EFE710',
-    				 'grey' => '8E8D73',
+    				 'orange' => 'FF4500',
+    				 'yellow' => 'F0E68C',
+    				 'grey' => 'D3D3D3',
     			  ];
     	$i = 0;
     	foreach ($colors as $currentColor => $hexadecimal) {

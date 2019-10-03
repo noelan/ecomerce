@@ -1,4 +1,85 @@
-<div class="header sticky-top">
+
+<div class="row justify-content-center bg-white">
+    <div class="col-lg-1 col-sm-6">
+      <a href="{{ path('home') }}"><img class="logo" src="https://image.flaticon.com/icons/png/512/12/12653.png"></a>
+    </div>
+    <div class="col-lg-2 col-sm-11">  
+     <p class="text-center funnyShop myBlue cabin">Funny Shop</p>
+    </div>
+ 
+  <nav>
+    <input type="checkbox" id="nav" class="hidden"/>
+    <label for="nav" class="nav-open"><i></i><i></i><i></i></label>
+    <div class="nav-container">
+      <ul>
+        <li>
+          <a class="loginBtn" href="{{ path('show_cart')}}">
+          Panier<i class="myBlue fa fa-shopping-cart" style="font-size:18px"></i>
+        </a>
+        </li>
+        <li>
+          <a class="loginBtn" href="{{ path('app_login') }}">Se connecter <i class="myBlue fas fa-power-off" style="font-size:18px"></i></a>
+        </li>
+        <li>
+          <a class="loginBtn" href="{{ path('app_register') }}">S'inscrire <i class="myBlue fas fa-address-book" style="font-size:18px"></i></a>
+        </li>
+        <li class="nav-item lgHide">
+          <a class="nav-link text-white" href="{{ path('showByCategory', {'category': 'Tshirt'}) }}">T-shirt</a>
+        </li>
+        <li class="nav-item lgHide">
+          <a class="nav-link text-white" href="{{ path('showByCategory', {'category': 'Jogging'}) }}">Jogging</a>
+        </li>
+        <li class="nav-item lgHide">
+          <a class="nav-link text-white" href="{{ path('showByCategory', {'category': 'Basket'}) }}">Basket</a>
+        </li>
+        <li class="nav-item lgHide">
+          <a class="nav-link text-white" href="{{ path('showByCategory', {'category': 'Jean'}) }}">Jean</a>
+        </li>
+        <li class="nav-item lgHide">
+          <a class="nav-link text-white" href="{{ path('showByCategory', {'category': 'Veste'}) }}">Veste</a>
+        </li>
+        <li class="nav-item lgHide">
+          <a class="nav-link text-white" href="{{ path('showByCategory', {'category': 'Casquette'}) }}">Casquette</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+</div>   
+<nav class="navbar secondNav navbar-expand-lg navbar-light bg-dark smHide">
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="myNavbar navbar-nav mx-auto">
+      <li class="nav-item">
+        <a class="nav-link text-white" href="{{ path('showByCategory', {'category': 'Tshirt'}) }}">T-shirt</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="{{ path('showByCategory', {'category': 'Jogging'}) }}">Jogging</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="{{ path('showByCategory', {'category': 'Basket'}) }}">Basket</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="{{ path('showByCategory', {'category': 'Jean'}) }}">Jean</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="{{ path('showByCategory', {'category': 'Veste'}) }}">Veste</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-white" href="{{ path('showByCategory', {'category': 'Casquette'}) }}">Casquette</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+
+<!-- <div class="header sticky-top">
   <div class="row justify-content-center bg-white">
     <div class="col-1">
       <a href="{{ path('home') }}"><img class="logo" src="https://image.flaticon.com/icons/png/512/12/12653.png"></a>
@@ -56,3 +137,22 @@
     </div>
   </nav><br>
 </div>
+
+ 
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div>
+      <a href="{{ path('home') }}"><h1 class="funnyShop">Funny Shop</h1></a>
+      </div>  
+  </div>
+    <div class="topnav" id="myTopnav">
+    <a href="#home" class="active">Home</a>
+    <a href="#news">News</a>
+    <a href="#contact">Contact</a>
+    <a href="#about">About</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+</div>
+-->
