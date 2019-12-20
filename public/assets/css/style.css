@@ -287,12 +287,14 @@ nav ul li a:hover {
 }
 
 .pictureShowOne {
-  margin: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  margin-top:5rem
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+}
+
+.pictureDivShowOne {
+  margin-top:5rem;
 }
 
 .lgHide {

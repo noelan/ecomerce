@@ -7,7 +7,7 @@
 			<a href="{{ path('home') }}"><button class="btn btn-info text-center">Retour a la boutique !</button></a>
 		</div>
 	{% else %}
-		<h2 class="text-center oldtt bg">Mon panier</h2><hr>
+		<h2 class="text-center ubuntu bg">Mon panier</h2><hr>
 		{% for article in app.session.get('cart') %}
 			<div class="row">
 				<div class="col-lg-3 bg-white p-3 hrLike">
@@ -74,11 +74,20 @@
 									<p class="lato livraisonPrice">Offerte </p>
 								</div>
 							</div>
-							<button class="btn btn-success">Paiement</button><hr>
+							<button class="btn btn-success" id="paypal-button">Paiement</button><hr>
 	    			</div>
     			{% endif %}
 		    </div>  
 		{% endfor %}	
 	{% endif %}
-   		
+
+{% endblock %}
+{% block javascripts %}
+	<script type="text/javascript">
+		function showMajBtn() {
+		  let btn = document.getElementById('majBtn')
+		  console.log(btn)
+		  btn.classList.remove("hidden")
+		}
+	</script>
 {% endblock %}

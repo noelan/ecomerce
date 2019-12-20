@@ -2,7 +2,7 @@
 {% block body %}
 <div class="container">
 	{% if  articles %}
-		<h1 class="opensans myBlue text-center" id="myType">Nos {{ articles[0].type }}</h1><hr>
+		<h1 class="ubuntu myBlue text-center" id="myType">Nos {{ articles[0].type }}</h1><hr>
 	{% endif %}
 		<div class="col-lg-2 col-md-4 smHide myAccordion">
 			<div class="accordion myAccordion2" id="accordionExample">		  
@@ -23,11 +23,11 @@
 			        			<p class="opensans pLeftMenu">{{ size.name }}</p><br>
 			        		{% else %}
 			        			{% set Parameter = ( currentParameters  ~ '+sizes-' ~  size.name )    %}      				
-										{% if 'sizes-' ~ size.name in currentParameters   %}	
-					        				<input class="myCheckbox" type="checkbox" id="sizes-{{ size.name }}" checked>
-					        			{% else %}
-					        				<input class="myCheckbox" type="checkbox" id="sizes-{{ size.name }}">
-					        			{% endif %}
+									{% if 'sizes-' ~ size.name in currentParameters   %}	
+				        				<input class="myCheckbox" type="checkbox" id="sizes-{{ size.name }}" checked>
+				        			{% else %}
+				        				<input class="myCheckbox" type="checkbox" id="sizes-{{ size.name }}">
+				        			{% endif %}
 					        		<p class="pLeftMenu">
 					        			{{ size.name }}
 			        				</p>

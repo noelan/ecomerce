@@ -16,7 +16,7 @@ function showByFilters() {
             window.location.replace(url)
         })
      }
-     console.log(url)
+     
 }
 window.onload = showByFilters;
 
@@ -98,10 +98,3 @@ document.addEventListener("click", closeAllSelect);
 /* Apparition mettre a jour bouton panier */
 
 
-function showMajBtn() {
-
-  let btn = document.getElementById('majBtn')
-  console.log(btn)
-  btn.classList.remove("hidden")
-
-}
