@@ -62,6 +62,7 @@ class ClothRepository extends ServiceEntityRepository
             $whereString .= ")";
         }
         $req .= $joinString . $whereString;
+
         $em = $this->getEntityManager();
         $query = $em->createQuery(
             $req
@@ -128,6 +129,7 @@ class ClothRepository extends ServiceEntityRepository
         }
         $tableau['category'] = $category;
         $finalRequest = $initialRequest . " ". $everyJoin. "WHERE (cloth.Type=:category". $whereAndOr;
+        // dd($finalRequest);
         $em = $this->getEntityManager();
         $query = $em->createQuery(
             $finalRequest

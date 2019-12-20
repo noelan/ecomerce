@@ -1,16 +1,14 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-<div class="container-fluid">
+<div class="container">
 	{% if  articles %}
-		<h1 class="cabin myBlue text-center" id="myType">Nos {{ articles[0].type }}</h1><hr>
+		<h1 class="opensans myBlue text-center" id="myType">Nos {{ articles[0].type }}</h1><hr>
 	{% endif %}
-	<div class="row">
-		<div class="col-lg-2 smHide" style="position:absolute;padding-left:3rem;">
-			<div class="accordion" id="accordionExample">
-			  <div class="leftCard card">
-			    <div id="headingOne">
+		<div class="col-lg-2 col-md-4 smHide myAccordion">
+			<div class="accordion myAccordion2" id="accordionExample">		  
+			    <div id="headingOne panel-heading">
 			      <h5 class="mb-0">
-			        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne"
+			        <button class="btn btn-link panel-heading" type="button" data-toggle="collapse" data-target="#collapseOne"
 			           aria-controls="collapseOne" aria-expanded="false">
 			          <span class="typeName">Taille</span>
 			        </button>
@@ -18,11 +16,11 @@
 			    </div>
 			    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
 			      data-parent="#accordionExample">
-			      <div class="card-body cardBody">
-			      	{% for size in sizes %}    		
+			      <div class="card-body">
+			      	{% for size in sizes %}    	
 			      			{% if currentParameters == null %}
 			      				<input class="myCheckbox" type="checkbox" id="sizes-{{ size.name }}" name="scales">
-			        			<p class="cabin pLeftMenu">{{ size.name }}</p><br>
+			        			<p class="opensans pLeftMenu">{{ size.name }}</p><br>
 			        		{% else %}
 			        			{% set Parameter = ( currentParameters  ~ '+sizes-' ~  size.name )    %}      				
 										{% if 'sizes-' ~ size.name in currentParameters   %}	
@@ -33,16 +31,16 @@
 					        		<p class="pLeftMenu">
 					        			{{ size.name }}
 			        				</p>
-					        		<br>	
-			        		{% endif %}	
+					        		<br>
+			        		{% endif %}
 			        {% endfor %}
 			      </div>
 			    </div>
-			  </div><br>
-			  <div class="leftCard card">
+			  <br>
+			  <div class="leftCard">
 			    <div id="headingOne">
 			      <h5 class="mb-0">
-			        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTwo"
+			        <button class="btn btn-link panel-heading" type="button" data-toggle="collapse" data-target="#collapseTwo"
 			          aria-expanded="false" aria-controls="collapseOne">
 			         	<span class="typeName">Matière</span>
 			        </button>
@@ -53,33 +51,33 @@
 			      <div class="card-body cardBody">
 			      	{% for material in materials %}
 			        	{% if currentParameters == null %}
-			        				<input class="myCheckbox" type="checkbox" id="materials-{{ material.name }}" name="scales" >
-			        			<p class="pLeftMenu">
-			        				{{ material.name }}
-			        			</p><br>
-			        		{% else %}
-			        			{% set Parameter = ( currentParameters  ~ '+materials-' ~  material.name )    %}
-			        		
-			        			{% if 'materials-' ~ material.name in currentParameters   %}	
-			        				<input class="myCheckbox" type="checkbox" id="materials-{{ material.name }}" checked>
-			        			{% else %}
-			        				<input class="myCheckbox" type="checkbox" id="materials-{{ material.name }}">
-			        			{% endif %}	
+		        			<input class="myCheckbox" type="checkbox" id="materials-{{ material.name }}" name="scales" >
+		        			<p class="pLeftMenu">
+		        				{{ material.name }}
+		        			</p><br>
+			        	{% else %}
+		        			{% set Parameter = ( currentParameters  ~ '+materials-' ~  material.name )    %}
+		        		
+		        			{% if 'materials-' ~ material.name in currentParameters   %}	
+		        				<input class="myCheckbox" type="checkbox" id="materials-{{ material.name }}" checked>
+		        			{% else %}
+		        				<input class="myCheckbox" type="checkbox" id="materials-{{ material.name }}">
+		        			{% endif %}	
 			        		<p class="pLeftMenu">	
 			        			{{ material.name }}
 			        		</p><br>
-			        		{% endif %}	
+			        	{% endif %}	
 			        {% endfor %}
 			      </div>
 			    </div>
 			  </div><br>
-			  <div class="card">
+			  <div class="leftCard">
 			    <div id="headingOne">
 			      <h5 class="mb-0">
-			        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseThree"
+			        <button class="btn btn-link panel-heading" type="button" data-toggle="collapse" data-target="#collapseThree"
 			          aria-expanded="true" aria-controls="collapseOne">
 			          <span class="typeName">
-			          Color
+			          Couleur
 			          </span>
 			        </button>
 			      </h5>
@@ -93,7 +91,7 @@
 			        			<p class="pLeftMenu">
 			        				{{ color.name }}
 			        			</p><br>
-			        			<span class="myColorLogo"></span>
+			        			
 			        		{% else %}
 			        			{% set Parameter = ( currentParameters  ~ '+colors-' ~  color.name )    %}
 			        			{% if 'colors-' ~ color.name in currentParameters %}	
@@ -104,9 +102,7 @@
 			        			{% endif %}	
 			        		<p class="pLeftMenu">	
 			        			{{ color.name }}
-			        		</p>
-			        		<span class="myColorLogo" style="background-color:{{ color.name }};color:{{ color.name }}">oo</span>
-			        			<br>
+			        		</p><br>
 			        		{% endif %}	
 			        {% endfor %}
 			      </div>
@@ -114,48 +110,46 @@
 			  </div>
 			</div>
 		</div>
-	{% for article in articles %}
-	{% if (loop.index % 4) and (loop.index % 4 == 1) %}	
-		<div class="col-lg-2 offset-lg-3 col-sm-12 smCard">
-	{% else %}
-		<div class="col-lg-2 col-sm-12 smCard" style="position:relative">
-	{% endif %}
-		<div class="card" style="width: 18rem;border:none;">
-			<a href="{{ path('show_one', {'id': article.id}) }}">
-				<img src="{{ article.picture }}" class="card-img-top img-fluid" alt="...">
-			</a>
-			<div class="card-body">
-				<p class="cabin card-text text-center font-weight-bold ellipsis" style="font-size:2rem;">{{ article.name }}</p>
-				<p class="myDescription text-center font-weight-light">{{ article.description }}</p>
-				<hr>
-				<div class="text-center smHide">
-				{% for size in article.sizes %}
-					<p style="display:inline;padding-right:0.2rem;">{{ size.name }}</p>
-				{% endfor %}
+	<div class="row" style="width:110%">
+		{% if articles == null %}
+			<div class="heightMini">
+				<h1 class="text-center ubuntu m-3">Il n'y a aucun article qui corresponde a vos critères</h1>
+			</div>
+		{% endif %}
+		{% for article in articles %}	
+		<div class="col-lg-3 col-md-6 col-sm-12 smCard " style="padding-right:18rem;padding-bottom:1rem;">
+			<div class="card" style="width: 18rem;border:none;">
+				<a href="{{ path('show_one', {'id': article.id}) }}">
+					<img src="{{ article.picture }}" class="card-img-top img-fluid" alt="...">
+				</a>
+				<div class="card-body">
+					<p class="oldtt text-center font-weight-bold ellipsis" style="font-size:2rem;">{{ article.name }}</p>
+					<p class="myDescription text-center font-weight-light">{{ article.description }}</p>
+					<hr>
+					<div class="text-center smHide">
+					{% for size in article.sizes %}
+						<p style="display:inline;padding-right:0.2rem;">{{ size.name }}</p>
+					{% endfor %}
+					</div>
+					<hr class="smHide">
+					<div class="text-center smHide">
+						<p class="ubuntu">Coloris disponible :</p>
+					{% for color in article.colors %}
+						<span class="myColorLogo" style="background-color:{{ color.name }};color:{{ color.name }}">oo</span>
+					{% endfor %}
+					</div><hr class="smHide">
+					<!--
+					{% for material in article.materials %}
+						<p>{{ material.name }}</p>
+					{% endfor %} -->
+					<p class="text-center font-weight-bold oldtt" style="font-size:2rem;">{{ article.price }} €</p>
 				</div>
-				<hr class="smHide">
-				<div class="text-center smHide">
-				{% for color in article.colors %}
-					<span class="myColorLogo" style="background-color:{{ color.name }};color:{{ color.name }}">oo</span>
-				{% endfor %}
-				</div><hr class="smHide">
-				<!--
-				{% for material in article.materials %}
-					<p>{{ material.name }}</p>
-				{% endfor %} -->
-				<p class="myBlue text-center font-weight-bold" style="font-size:2rem;">{{ article.price }} €</p>
 			</div>
 		</div>
+		{% endfor %}
 	</div>
 
-	{% if loop.index % 4 == 0 %}
-	</div>
-		<hr>
-	<div class="row">	
-	{% endif %}
-	{% endfor %}
-	</div>
 </div>
-</div>
+
 
 {% endblock %}

@@ -1,33 +1,84 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-	<div class="container">
+	<div class="container cartContainer">
 	{% if app.session.get('cart') == 0 %}
-		<h2 class="text-center">Votre panier est vide</h2>
+		<h2 class="text-center oldtt">Votre panier est actuellement vide</h2>
+		<div class="text-center padding-t">
+			<a href="{{ path('home') }}"><button class="btn btn-info text-center">Retour a la boutique !</button></a>
+		</div>
 	{% else %}
+		<h2 class="text-center oldtt bg">Mon panier</h2><hr>
 		{% for article in app.session.get('cart') %}
 			<div class="row">
-				<div class="col-lg-3">
-					<img class="cartImg" src="{{ article.picture }}">
+				<div class="col-lg-3 bg-white p-3 hrLike">
+					<a href="{{ path('show_one', {'id': article.id}) }}">
+						<img class="cartImg card" src="{{ article.picture }}">
+					</a>
 				</div>
-				<div class="col-lg-4">
-					<p class="cabin">{{ article.name }}</p>
-					<p class="cabin">Prix : {{ article.price }}</p>
-					<p class="cabin">Taille : {{ article.size }}  </p>
-					<p class="cabin">Quantité : {{ article.quantity }}</p>
-					<p class="cabin">{{ article.description }}</p>			
+				<div class="col-lg-4 solid bg-white hrLike">
+					<p class="ubuntu font-weight-bold mt-3 h2">Prix : {{ article.price }} €</p>
+					<p class="oldtt">{{ article.name }}</p>
+					<form method="POST" action="{{ path('add_cart', {'id': article.id}) }}"> 
+					<div >	
+						<div class="select-style">
+						<select onchange="showMajBtn()" name="size"> 
+							{% for size in sizes %} 
+								{% if article.size == size.name %}
+									<option value="{{ size.name }}" selected>{{ size.name }}</option>
+								{% else %}
+									<option value="{{ size.name }}">{{ size.name }}</option>
+								{% endif %}
+
+							{% endfor %}
+						</select>
+						</div>
+					</div><br>
+					<p class="oldtt">Quantité : 
+						<div class="select-style">
+							<select onchange="showMajBtn()" name="quantity">
+							{% for i in 1..5 %}	
+								{% if article.quantity == i %}
+									<option value="{{ i }}" selected="">{{ i }}</option>
+								{% else %}	
+									<option value="{{ i }}">{{ i }}</option>
+								{% endif %}		
+							{% endfor %}
+							</select>
+						</div>
+					</p>
+					{% if loop.index == 1 %}
+						<button class="btn btn-info hidden" id="majBtn">Mettre à jour le panier</button>
+					{% endif %}
+					</form>
+					<p class="oldtt m-3 myGrey">{{ article.description }}</p>			
 				</div>
-				<form action="{{ path('remove_cart', {'id':article.id}) }}" method="POST">
-					<button type="submit" style="background-color:white;border:none;"><i class="fas fa-trash" style="font-size:24px;color:grey;"></i></button>
+				<form class="bg-white hrLike p-3"  action="{{ path('remove_cart', {'id':article.id}) }}" method="POST">
+					<button type="submit" style="background-color:white;border:none;"><i class="far fa-minus-square" style="font-size:2rem;"></i></i></button>
 				</form>	
 				{% if loop.index == 1 %}
-				<div class="totalPrice">
-					<h3>Prix total € : <span class="myBlue">{{ app.session.get('totalCart') }}</span></h3>
-					<button class="btn btn-info" style="width:11rem;">Passer commande</button>
-			    </div>
-			    {% endif %}	
-		    </div>	<hr>    		
+					<div class="col-lg-2 offset-lg-1 bg-white card totalPrice">
+							<h3 class="ubuntu font-weight-bold p-3">Total</h3><hr>
+							<div class="row justify-content-between">
+								<div class="col">
+									<p class="opensans font-weight-bold">Sous-total :</p>
+								</div>
+								<div class="col">
+									<p class="lato">{{ app.session.get('totalCart') ~ ",50 " }} €</p>
+								</div>
+							</div>
+							<div class="row justify-content-between">
+								<div class="col">
+									<p class="opensans font-weight-bold">Livraison :</p>
+								</div>
+								<div class="col">
+									<p class="lato livraisonPrice">Offerte </p>
+								</div>
+							</div>
+							<button class="btn btn-success">Paiement</button><hr>
+	    			</div>
+    			{% endif %}
+		    </div>  
 		{% endfor %}	
 	{% endif %}
    		
-    </div>
 {% endblock %}

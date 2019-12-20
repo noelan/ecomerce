@@ -1,15 +1,14 @@
 
 <div class="row justify-content-center bg-white">
     <div class="col-lg-1 col-sm-6">
-      <a href="{{ path('home') }}"><img class="logo" src="https://image.flaticon.com/icons/png/512/12/12653.png"></a>
+      <a href="{{ path('home') }}"><img class="logo" src="/assets/image/logo.png"></a>
     </div>
     <div class="col-lg-2 col-sm-11">  
-     <p class="text-center funnyShop myBlue cabin">Funny Shop</p>
+     <a href="{{ path('home') }}"><p class="text-center funnyShop myBlue lato">ClothA</p></a>
     </div>
  
   <nav>
     <input type="checkbox" id="nav" class="hidden"/>
-    <label for="nav" class="nav-open"><i></i><i></i><i></i></label>
     <div class="nav-container">
       <ul>
         <li>
@@ -17,14 +16,27 @@
           Panier<i class="myBlue fa fa-shopping-cart" style="font-size:18px"></i>
         </a>
         </li>
+        {% if app.user %}
+        <li>
+          <a class="loginBtn" href="{{ path('app_logout') }}">Se déconnecter <i class="myBlue fas fa-power-off" style="font-size:18px"></i></a>
+        </li>
+        {% else %}
         <li>
           <a class="loginBtn" href="{{ path('app_login') }}">Se connecter <i class="myBlue fas fa-power-off" style="font-size:18px"></i></a>
         </li>
+        {% endif %}
+        {% if app.user == null %}
         <li>
           <a class="loginBtn" href="{{ path('app_register') }}">S'inscrire <i class="myBlue fas fa-address-book" style="font-size:18px"></i></a>
         </li>
+        {% endif %}
+        {% if is_granted('ROLE_ADMIN') %}
+        <li class="nav-item">
+          <a class="loginBtn" href="{{ path('adminInterface') }}">Admin<i class="myBlue fas fa-address-book" style="font-size:18px"></i></a>
+        </li>
+        {% endif %}
         <li class="nav-item lgHide">
-          <a class="nav-link text-white" href="{{ path('showByCategory', {'category': 'Tshirt'}) }}">T-shirt</a>
+          <a class="nav-link text-white " href="{{ path('showByCategory', {'category': 'Tshirt'}) }}">T-shirt</a>
         </li>
         <li class="nav-item lgHide">
           <a class="nav-link text-white" href="{{ path('showByCategory', {'category': 'Jogging'}) }}">Jogging</a>
@@ -46,26 +58,26 @@
   </nav>
 
 </div>   
-<nav class="navbar secondNav navbar-expand-lg navbar-light bg-dark smHide">
+<nav class="navbar secondNav navbar-expand-lg navbar-expand-md navbar-light mdb-color lighten-4 smHide">
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="myNavbar navbar-nav mx-auto">
       <li class="nav-item">
-        <a class="nav-link text-white" href="{{ path('showByCategory', {'category': 'Tshirt'}) }}">T-shirt</a>
+        <a class="nav-link text-black oldtt" href="{{ path('showByCategory', {'category': 'Tshirt'}) }}">T-shirt</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white" href="{{ path('showByCategory', {'category': 'Jogging'}) }}">Jogging</a>
+        <a class="nav-link text-black oldtt" href="{{ path('showByCategory', {'category': 'Jogging'}) }}">Jogging</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white" href="{{ path('showByCategory', {'category': 'Basket'}) }}">Basket</a>
+        <a class="nav-link text-black oldtt" href="{{ path('showByCategory', {'category': 'Basket'}) }}">Basket</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white" href="{{ path('showByCategory', {'category': 'Jean'}) }}">Jean</a>
+        <a class="nav-link text-black oldtt" href="{{ path('showByCategory', {'category': 'Jean'}) }}">Jean</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white" href="{{ path('showByCategory', {'category': 'Veste'}) }}">Veste</a>
+        <a class="nav-link text-black oldtt" href="{{ path('showByCategory', {'category': 'Veste'}) }}">Veste</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white" href="{{ path('showByCategory', {'category': 'Casquette'}) }}">Casquette</a>
+        <a class="nav-link text-black oldtt" href="{{ path('showByCategory', {'category': 'Casquette'}) }}">Casquette</a>
       </li>
     </ul>
   </div>

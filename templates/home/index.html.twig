@@ -3,14 +3,63 @@
 {% block title %}Salut!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1 class="text-center">Bienvue sur Funny Shop ! </h1>
-    <p style="width:110%;">Site réaliser par Noël AN afin de parfaire mes compétences et pouvoir alimenter mon portfolio</p>
-    <p class="text-center">Resonsive pas encore gérer en cours !</p>
+<!-- Presentation -->
+<div class="container">
+		<section>
+			
+		</section>
 </div>
+
+<div class="container-fluid">
+	<div class="parallax" data-parallax="scroll" data-image-src="/assets/image/parallax.jpeg" data-z-index="1">		
+		<div class="homePresentation">
+			<h1 class="text-center homeWelcome oldtt">Bienvenu sur ClothA ! </h1>
+    		<p class="text-center homeDescription">Site réaliser par Noël AN afin de parfaire mes compétences et pouvoir alimenter mon portfolio</p>
+    	</div>	
+	</div>
+</div>
+<!-- Meilleures vente -->
+<div class="container-fluid">
+	<section class="padding-t">
+		<h1 class="text-center oldtt">Nos meilleurs ventes</h1><hr>
+		<div class="row justify-content-center padding-t">
+			{% for article in articlesProposition %}
+				<div class="col-lg-2 col-sm-12 couldLike">
+					<div class="card" style="width: 18rem;border:none;">
+						<a href="{{ path('show_one', {'id': article.id}) }}">
+							<img src="{{ article.picture }}" class="card-img-top" alt="..." height="365" width="auto">
+						</a>
+						<div class="card-body">
+							<p class="oldtt ellipsis card-text text-center" style="font-size:2rem;color:black;">{{ article.name }}</p>
+							<p class="text-center font-weight-bold" style="font-size:2rem;">{{ article.price }} €</p>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>	
+	</section>
+</div>
+<!-- Tendance -->
+<div class="container-fluid">
+	<section class="padding-t">
+		<h1 class="text-center oldtt">Tendances</h1><hr>
+		<div class="row justify-content-center padding-t">
+			{% for article in articlesTendances %}
+				<div class="col-lg-2 col-sm-12 couldLike">
+					<div class="card" style="width: 18rem;border:none;">
+						<a href="{{ path('show_one', {'id': article.id}) }}">
+							<img src="{{ article.picture }}" class="card-img-top" alt="..." height="365" width="auto">
+						</a>
+						<div class="card-body">
+							<p class="oldtt ellipsis card-text text-center" style="font-size:2rem;color:black;">{{ article.name }}</p>
+							<p class="text-center font-weight-bold" style="font-size:2rem;">{{ article.price }} €</p>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>	
+	</section>
+</div>
+    
 {% endblock %}

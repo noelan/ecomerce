@@ -98,7 +98,7 @@ class ClothFixtures extends Fixture implements DependentFixtureInterface
                       ->setNote(rand(2, 5))
                       ->setDescription($faker->paragraph)
                       ->setPicture($picture[$i]);
-                      for ($p=0; $p <13 ; $p++) { 
+                      for ($p=0; $p <6 ; $p++) { 
                         $cloth->addSize($this->getReference('size' . rand(0,12)));
                       }
                       for ($j=0; $j <3 ; $j++) { 

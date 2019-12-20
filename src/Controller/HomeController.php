@@ -17,10 +17,12 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index()
+    public function index(ClothRepository $ClothRepository)
     {
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
+            'articlesProposition' => $ClothRepository->findRandom(),
+            'articlesTendances' => $ClothRepository->findRandom()
         ]);
     }
 
@@ -66,16 +68,18 @@ class HomeController extends AbstractController
        
     	return $this->render('home/showone.html.twig', [
     		'article' => $ClothRepository->findOneBy(['id' => $id]),
-            'articlesProposition' => $ClothRepository->findRandom()
+            'articlesProposition' => $ClothRepository->findRandom(),
     	]); 
     }
 
     /**
     /* @Route("/showCart", name="show_cart")
     */
-    public function showCart()
+    public function showCart(SizeRepository $SizeRepository)
     {   
-        return $this->render('home/showcart.html.twig');
+        return $this->render('home/showcart.html.twig', [
+        'sizes' => $SizeRepository->findAll(),
+        ]);
     }
 
     // /**
@@ -147,7 +151,6 @@ class HomeController extends AbstractController
             $session->set('cart', []); // if cart doesn’t exist in session, it is initialized.
         }
         $cart = $session->get('cart');
-
         $cloth = $ClothRepository->findOneBy(['id' => $id]);
         $quantity = $_POST['quantity'];
         $size = $_POST['size'];

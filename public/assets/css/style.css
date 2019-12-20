@@ -1,48 +1,86 @@
-
-
-@import url('http://fonts.googleapis.com/css?family=Lobster');
-@import url('https://fonts.googleapis.com/css?family=Bree+Serif&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato|Old+Standard+TT|Open+Sans&display=swap');
+@import url('//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css');
+@import url('https://fonts.googleapis.com/css?family=Ubuntu&display=swap');
 /* Color and fonts */
-.cabin {
-  font-family: 'Bree Serif';
+.ubuntu {
+  font-family: 'Ubuntu', sans-serif;
 }
 
-.lobster {
-  font-family: 'Lobster';
+.lato{
+  font-family: 'Lato', sans-serif;
+}
+
+.opensans {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.oldtt {
+  font-family: 'Old Standard TT', serif;
 }
 
 .myBlue {
-  color: #5F94E4;
+  color: #26348A;
+}
+
+.myGrey {
+  color: #757579;
 }
 
 body {
   font-family: 'Cabin';
+  background-color: #DEDEDE;
 }
 
 h3 {
   font-family: 'Lobster';
 }
 
+/* HomePage */
+
+.homePresentation {
+  z-index: 20;
+  position: relative;
+  height: 500px;
+  color: white;
+  opacity: 0.8;
+  font-family: 'Lato', sans-serif;
+}
+
+.homeWelcome {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 4rem;
+  transform: translate(-50%, -100%);
+  text-shadow: black 1px 1px;
+}
+
+.homeDescription {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, 0%);
+  text-shadow: black 1px 1px;
+  font-size: 2rem;
+}
+/* Parallax */
+.parallax {
+  /* The image used */
+  background: transparent;
+ }
+
+
 /* Left Menu */
 .pLeftMenu {
-  font-size: 1.5rem;
+  font-size: 1rem;
   display:inline;
   margin-left: 0.3rem;
-  font-family: 'Lobster';
   font-weight: lighter;
 }
 
 .typeName {
-  font-family: 'Bree Serif';
-  font-weight: bold;
-  font-size: 2rem;
-  color: #5F94E4;
-}
-
-.cardBody {
-  border-top:solid;
-  border-width: 0.1rem;
-  border-color: #1067EB;
+  font-size: 1rem;
+  font-family: 'Lato';
 }
 
 .myColorLogo {
@@ -51,6 +89,10 @@ h3 {
   border-color: #D4D9DF;
   border-width: 0.01rem;
   padding-left: 0.2rem;
+}
+
+.heightMini {
+  min-height: 300px;
 }
 
 /* Navbar */;
@@ -89,13 +131,13 @@ nav ul li a:hover {
   font-weight: bold;
   font-size: 3rem;
   padding-top: 2rem;
-  font-family: 'Bree Serif';
   white-space: nowrap;
   text-align: center;
 }
 
 .logo {
   width:80%;
+  padding-top: 1rem;
 }
 
 .myNavbar > li {
@@ -123,6 +165,8 @@ nav ul li a:hover {
 .loginBtn {
   text-align: center;
   color:black;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1rem;
 }
 
 .loginBtn > p {
@@ -135,6 +179,9 @@ nav ul li a:hover {
   white-space: nowrap;
 }
 
+#myType {
+ padding-top: 1rem;
+}
 /* Useful things */
 .ellipsis{
   white-space: nowrap;
@@ -142,7 +189,57 @@ nav ul li a:hover {
   text-overflow: ellipsis;
 }
 
+.padding-t {
+  padding-top:2rem;
+}
+
+.solid {
+  border:;
+}
+
+.hrLike {
+  border-bottom: 0.1rem solid;
+  border-color: grey;
+}
+/* Footer */
+
+
+
+.footerDiv ul {
+  list-style-type: none;
+  text-align: left;
+}
+
+.footerDiv ul li {
+  white-space: nowrap;
+  text-decoration: none;
+  color:  #757579;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.footerDiv ul li:hover {
+  text-decoration: underline;
+
+}
+
 /* Show Cart */
+
+#majBtn {
+  position: fixed;
+  top: 22%;
+  left: 70%;
+}
+
+.livraisonPrice {
+  color: red;
+  text-decoration: underline;
+}
+
+.cartContainer {
+  min-height: 200px;
+  margin-top: 2rem;
+  padding-top: 1rem;
+}
 
 .size {
   border:solid;
@@ -158,9 +255,13 @@ nav ul li a:hover {
   width: 80%;
 }
 
+.rowCart {
+  border-bottom: solid;
+}
+
 .totalPrice {
-  margin-left: 8rem;
-  margin-top: 5rem;
+  position: fixed;
+  left: 60%;
 }
 
 .myP {
@@ -198,6 +299,56 @@ nav ul li a:hover {
   display: none;
 }
 
+.myAccordion {
+  position: absolute;
+  left : 2rem;
+}
+
+
+/* select */
+    .select-style {
+        margin-left: 2rem;
+        padding: 0;
+        margin: 0;
+        border: 1px solid #ccc;
+        width: 80px;
+        border-radius: 3px;
+        overflow: hidden;
+        background-color: #fff;
+        background: #fff;
+        position: relative;
+    }
+    .select-style select {
+        padding: 5px 8px;
+        width: 130%;
+        border: none;
+        box-shadow: none;
+        background-color: transparent;
+        background-image: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    }
+    .select-style:after {
+        top: 50%;
+        left: 65%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+        border-color: rgba(0, 0, 0, 0);
+        border-top-color: #000000;
+        border-width: 5px;
+        margin-top: -2px;
+        z-index: 100;
+    }
+    .select-style select:focus {
+        outline: none;
+    }
+
+
 /* checkbox */
 input[type=checkbox] {
     -webkit-appearance: none;
@@ -206,22 +357,51 @@ input[type=checkbox] {
 }
 
 input[type=checkbox] {
-    border-radius: 0.2rem;
     height: 1.2rem;
     width: 1.2rem;
-    background: white;
     border:solid;
-    border-color: grey;
+    border-color: blue;
     border-width: 0.1rem;
     display: inline-block;
     }
 
 input[type="checkbox"]:checked {
-  font-family: FontAwesome;
-  content: "\f046";
-  background-color: #5F94FF;
+  width: 10px;
+  top: -5px;
+  left: 5px;
+  border-radius: 0;
+  opacity: 1;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  -webkit-transform: rotate(45deg);
   }
   
+ /* Accordéon arrow */ 
+.panel-heading {
+  position: relative;
+}
+.panel-heading[data-toggle="collapse"]:after {
+  font-family: 'FontAwesome';
+  content: "\f078";    
+  color: black;
+  font-size: 18px;
+  position: absolute; 
+  left: 100%; 
+  margin-left: -17px; 
+  top: 50%; 
+  margin-top: -13px; 
+  /* rotate "play" icon from > (right arrow) to down arrow */
+
+}
+.panel-heading[data-toggle="collapse"].collapsed:after {
+  /* rotate "play" icon from > (right arrow) to ^ (up arrow) */
+  -webkit-transform: rotate(180deg);
+  -moz-transform:    rotate(180deg);
+  -ms-transform:     rotate(180deg);
+  -o-transform:      rotate(180deg);
+  transform:         rotate(180deg);
+}
+
 .topnav {
   display: none;
 }
@@ -262,6 +442,13 @@ h1 {
 }
 
 
+
+@media screen and (max-width: 1023px) {
+  .leftCard {
+    float:left;
+  }
+
+}
 
 
 

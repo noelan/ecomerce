@@ -27,7 +27,6 @@ class ClothType extends AbstractType
             ->add('note')
             ->add('picture')
             ->add('description')
-            ->add('Size')
     ;
     }
 
