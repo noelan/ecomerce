@@ -1,56 +1,615 @@
 <!DOCTYPE html>
 <html>
-    {% for category, messages in app.flashes %}
-        {% for message in messages %}
-            <div class="text-center alert alert-{{ category }}">
-                {{ message }}
-            </div>
-        {% endfor %}
-    {% endfor %}
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}
-        
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">      
-        <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-        <link href='http://fonts.googleapis.com/css?family=Cabin' rel='stylesheet' type='text/css'>
-            <!-- Font Awesome -->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
-        <!-- Bootstrap core CSS -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-        <!-- Material Design Bootstrap -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
-        {% endblock %}
-    </head>
-    {% include 'home/navbar.html.twig' %}
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}	
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-        <!-- JQuery -->
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <!-- Bootstrap tooltips -->
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-        <!-- MDB core JavaScript -->
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>   <!-- 
-        Bootstrap core JavaScript
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-         -->
-         <script type="text/javascript" src="/assets/javascript/showByFilters.js"></script>
-         <script type="text/javascript" src="/assets/javascript/parallax.min.js"></script>
-         <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
-         <script src="https://kit.fontawesome.com/25242ecb4d.js" crossorigin="anonymous"></script>
-        {% endblock %}
-    </body>
-    <div class="container-fluid"><br>
-    {% block footer %}
-        {% include 'home/footer.html.twig' %}
-    {% endblock %}
-    </div>
+	{% for category, messages in app.flashes %}
+		{% for message in messages %}
+			<div class="text-center alert alert-{{ category }}">
+				{{ message }}
+			</div>
+		{% endfor %}
+	{% endfor %}
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		{% block stylesheets %}
+			{{ encore_entry_link_tags('app') }}
+			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+			<link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+			<link
+			href='http://fonts.googleapis.com/css?family=Cabin' rel='stylesheet' type='text/css'>
+			<!-- Font Awesome -->
+			<link
+			rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+			<!-- Bootstrap core CSS -->
+			<link
+			href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+			<!-- Material Design Bootstrap -->
+			<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
+			<style>
+				@import url("https://fonts.googleapis.com/css?family=Lato|Old+Standard+TT|Open+Sans &display=swap");
+				@import url("//netdna.bootstrapcdn.com/font-awesome / 4.1.0/css/font-awesome.min.css");
+				@import url("https://fonts.googleapis.com/css?family=Ubuntu&display=swap");
+				/* Color and fonts */
+				.ubuntu {
+					font-family: "Ubuntu", sans-serif;
+				}
+
+				.lato {
+					font-family: "Lato", sans-serif;
+				}
+
+				.opensans {
+					font-family: "Open Sans", sans-serif;
+				}
+
+				.oldtt {
+					font-family: "Old Standard TT", serif;
+				}
+
+				.myBlue {
+					color: #26348a;
+				}
+
+				.myGrey {
+					color: #757579;
+				}
+
+				body {
+					font-family: "Cabin";
+					background-color: #dedede;
+				}
+
+				h3 {
+					font-family: "Lobster";
+				}
+
+				/* HomePage */
+
+				.homePresentation {
+					z-index: 20;
+					position: relative;
+					height: 500px;
+					color: white;
+					opacity: 0.8;
+					font-family: "Lato", sans-serif;
+				}
+
+				.homeWelcome {
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					font-size: 4rem;
+					transform: translate(-50%, -100%);
+					text-shadow: black 1px 1px;
+				}
+
+				.homeDescription {
+					position: absolute;
+					top: 60%;
+					left: 50%;
+					transform: translate(-50%, 0%);
+					text-shadow: black 1px 1px;
+					font-size: 2rem;
+				}
+
+				.responsiveEnCours {
+					position: absolute;
+					top: 60%;
+					left: 50%;
+					transform: translate(-50%, 450%);
+					text-shadow: black 1px 1px;
+					font-size: 1rem;
+				}
+
+				/* Left Menu */
+				.pLeftMenu {
+					font-size: 1rem;
+					display: inline;
+					margin-left: 0.3rem;
+					font-weight: lighter;
+				}
+
+				.typeName {
+					font-size: 1rem;
+					font-family: "Lato";
+				}
+
+				.myColorLogo {
+					border: solid;
+					border-radius: 0.2rem;
+					border-color: #d4d9df;
+					border-width: 0.01rem;
+					padding-left: 0.2rem;
+				}
+
+				.heightMini {
+					min-height: 300px;
+				}
+
+				/* Navbar */
+
+				* {
+					box-sizing: border-box;
+				}
+				nav {
+					padding: 30px;
+				}
+				nav ul {
+					float: right;
+				}
+				nav ul li {
+					float: left;
+					padding-right: 2rem;
+				}
+				nav ul li:not(:first-child) {
+					margin-left: 25px;
+				}
+				nav ul li a {
+					display: inline-block;
+					outline: none;
+					color: #1f2227;
+					font-size: 1.5rem;
+					text-decoration: none;
+					letter-spacing: 0.04em;
+				}
+				nav ul li a:hover {
+					color: #808080;
+					text-decoration: none;
+				}
+
+				.funnyShop {
+					font-weight: bold;
+					font-size: 3rem;
+					padding-top: 2rem;
+					white-space: nowrap;
+					text-align: center;
+				}
+
+				.logo {
+					width: 80%;
+					padding-top: 1rem;
+				}
+
+				.myNavbar > li {
+					padding-right: 3rem;
+				}
+
+				.myNavbar > li > a {
+					font-weight: bold;
+					font-size: 1.2rem;
+				}
+
+				.panierBtn {
+					text-align: center;
+				}
+
+				.panierBtn > p {
+					margin: 0;
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					-ms-transform: translate(-50%, -50%);
+					transform: translate(-50%, -50%);
+				}
+
+				.loginBtn {
+					text-align: center;
+					color: black;
+					font-family: "Open Sans", sans-serif;
+					font-size: 1rem;
+				}
+
+				.loginBtn > p {
+					margin: 0;
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					-ms-transform: translate(-50%, -50%);
+					transform: translate(-50%, -50%);
+					white-space: nowrap;
+				}
+
+				#myType {
+					padding-top: 1rem;
+				}
+				/* Useful things */
+				.ellipsis {
+					white-space: nowrap;
+					overflow: hidden;
+					text-overflow: ellipsis;
+				}
+
+				.padding-t {
+					padding-top: 2rem;
+				}
+
+				.solid {
+					border: solid;
+				}
+
+				.hrLike {
+					border-bottom: 0.1rem solid;
+					border-color: grey;
+				}
+				/* Footer */
+
+				.footerDiv ul {
+					list-style-type: none;
+					text-align: left;
+				}
+
+				.footerDiv ul li {
+					white-space: nowrap;
+					text-decoration: none;
+					color: #757579;
+					font-family: "Open Sans", sans-serif;
+				}
+
+				.footerDiv ul li:hover {
+					text-decoration: underline;
+				}
+
+				/* Show Cart */
+
+				#majBtn {
+					position: fixed;
+					top: 22%;
+					left: 70%;
+				}
+
+				.livraisonPrice {
+					color: red;
+					text-decoration: underline;
+				}
+
+				.cartContainer {
+					min-height: 200px;
+					margin-top: 2rem;
+					padding-top: 1rem;
+				}
+
+				.size {
+					border: solid;
+					padding: 1rem;
+					text-align: center;
+					font-weight: bold;
+					border-color: grey;
+					border-width: 0.1px;
+					margin: 1rem;
+				}
+
+				.cartImg {
+					width: 80%;
+				}
+
+				.rowCart {
+					border-bottom: solid;
+				}
+
+				.totalPrice {
+					position: fixed;
+					left: 60%;
+				}
+
+				.myP {
+					font-weight: bold;
+					font-size: 3rem;
+					border: solid 0.3rem grey;
+					border-radius: 10px;
+					text-align: center;
+					font-family: "Lobster";
+				}
+
+				.clothName {
+					white-space: nowrap;
+					overflow: hidden;
+					text-overflow: ellipsis;
+				}
+
+				.myDescription {
+					height: 6rem;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					text-align: justify;
+				}
+
+				.pictureShowOne {
+					margin-top: 5rem;
+					width: 100%;
+					max-width: 350px;
+					height: auto;
+				}
+
+				.pictureDivShowOne {
+					margin-top: 5rem;
+				}
+
+				.lgHide {
+					display: none;
+				}
+
+				.myAccordion {
+					position: absolute;
+					left: 2rem;
+				}
+
+				/* select */
+				.select-style {
+					margin: 0;
+					padding: 0;
+					border: 1px solid #ccc;
+					width: 80px;
+					border-radius: 3px;
+					overflow: hidden;
+					background-color: #fff;
+					background: #fff;
+					position: relative;
+				}
+				.select-style select {
+					padding: 5px 8px;
+					width: 130%;
+					border: none;
+					box-shadow: none;
+					background-color: transparent;
+					background-image: none;
+					-webkit-appearance: none;
+					-moz-appearance: none;
+					appearance: none;
+				}
+				.select-style:after {
+					top: 50%;
+					left: 65%;
+					border: solid transparent;
+					content: " ";
+					height: 0;
+					width: 0;
+					position: absolute;
+					pointer-events: none;
+					border-color: rgba(0, 0, 0, 0);
+					border-top-color: #000000;
+					border-width: 5px;
+					margin-top: -2px;
+					z-index: 100;
+				}
+				.select-style select:focus {
+					outline: none;
+				}
+
+				/* checkbox */
+				input[type="checkbox"] {
+					-webkit-appearance: none;
+					-moz-appearance: none;
+					-ms-appearance: none;
+				}
+
+				input[type="checkbox"] {
+					height: 1.2rem;
+					width: 1.2rem;
+					border: solid;
+					border-color: blue;
+					border-width: 0.1rem;
+					display: inline-block;
+				}
+
+				input[type="checkbox"]:checked {
+					width: 10px;
+					top: -5px;
+					left: 5px;
+					border-radius: 0;
+					opacity: 1;
+					border-top-color: transparent;
+					border-left-color: transparent;
+				}
+
+				/* Accordéon arrow */
+				.panel-heading {
+					position: relative;
+				}
+				.panel-heading[data-toggle="collapse"]:after {
+					font-family: "FontAwesome";
+					content: "\f078";
+					color: black;
+					font-size: 18px;
+					position: absolute;
+					left: 100%;
+					margin-left: -17px;
+					top: 50%;
+					margin-top: -13px;
+					/* rotate "play" icon from > (right arrow) to down arrow */
+				}
+				.panel-heading[data-toggle="collapse"].collapsed:after {
+					/* rotate "play" icon from > (right arrow) to ^ (up arrow) */
+					-webkit-transform: rotate(180deg);
+					-moz-transform: rotate(180deg);
+					-ms-transform: rotate(180deg);
+					-o-transform: rotate(180deg);
+					transform: rotate(180deg);
+				}
+
+				.topnav {
+					display: none;
+				}
+
+				/* Media queries */
+
+				@media screen and(max-width: 760px) {
+					/* Navbar sm screen */
+
+					h1 {
+						font-size: 42px;
+						line-height: 56px;
+					}
+
+					.nav-open {
+						padding-top: 2rem;
+						font-weight: bold;
+					}
+					.logo {
+						width: 20%;
+						display: none;
+					}
+
+					.funnyShop {
+						text-decoration: none;
+						text-align: center;
+						width: 30%;
+						padding-left: 1rem;
+					}
+
+					.smCard {
+						padding-bottom: 2rem;
+					}
+
+					.smHide {
+						display: none;
+					}
+				}
+
+				@media screen and(max-width: 1023px) {
+					.leftCard {
+						float: left;
+					}
+				}
+
+				@media screen and(max-width: 560px) {
+					.nav-container {
+						position: fixed;
+						top: 0;
+						left: 0;
+						height: 100%;
+						width: 100%;
+						z-index: -1;
+						background: #1f2227;
+						opacity: 0;
+						transition: all 0.2s ease;
+					}
+					.nav-container ul {
+						position: absolute;
+						top: 50%;
+						transform: translateY(-50%);
+						width: 100%;
+					}
+					.nav-container ul li {
+						display: block;
+						float: none;
+						width: 100%;
+						text-align: right;
+						margin-bottom: 10px;
+					}
+					.nav-container ul li:nth-child(1) a {
+						transition-delay: 0.2s;
+					}
+					.nav-container ul li:nth-child(2) a {
+						transition-delay: 0.3s;
+					}
+					.nav-container ul li:nth-child(3) a {
+						transition-delay: 0.4s;
+					}
+					.nav-container ul li:nth-child(4) a {
+						transition-delay: 0.5s;
+					}
+					.nav-container ul li:not(:first-child) {
+						margin-left: 0;
+					}
+					.nav-container ul li a {
+						padding: 10px 25px;
+						opacity: 0;
+						color: #fff;
+						font-size: 24px;
+						font-weight: 600;
+						transform: translateY(-20px);
+						transition: all 0.2s ease;
+					}
+					.nav-open {
+						position: fixed;
+						right: 10px;
+						top: 10px;
+						display: block;
+						width: 48px;
+						height: 48px;
+						cursor: pointer;
+						z-index: 9999;
+						border-radius: 50%;
+					}
+					.nav-open i {
+						display: block;
+						width: 20px;
+						height: 2px;
+						background: #1f2227;
+						border-radius: 2px;
+						margin-left: 14px;
+					}
+					.nav-open i:nth-child(1) {
+						margin-top: 16px;
+					}
+					.nav-open i:nth-child(2) {
+						margin-top: 4px;
+						opacity: 1;
+					}
+					.nav-open i:nth-child(3) {
+						margin-top: 4px;
+					}
+				}
+				#nav:checked + .nav-open {
+					transform: rotate(45deg);
+				}
+				#nav:checked + .nav-open i {
+					background: #fff;
+					transition: transform 0.2s ease;
+				}
+				#nav:checked + .nav-open i:nth-child(1) {
+					transform: translateY(6px) rotate(180deg);
+				}
+				#nav:checked + .nav-open i:nth-child(2) {
+					opacity: 0;
+				}
+				#nav:checked + .nav-open i:nth-child(3) {
+					transform: translateY(-6px) rotate(90deg);
+				}
+				#nav:checked ~ .nav-container {
+					z-index: 9990;
+					opacity: 1;
+				}
+				#nav:checked ~ .nav-container ul li a {
+					opacity: 1;
+					transform: translateY(0);
+				}
+				.hidden {
+					display: none !important;
+				}
+			</style>
+		{% endblock %}
+	</head>
+	{% include 'home/navbar.html.twig' %}
+	<body>
+		{% block body %}{% endblock %}
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+			<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+			<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+			<!-- JQuery -->
+			<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+			<!-- Bootstrap tooltips -->
+			<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+			<!-- MDB core JavaScript -->
+			<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
+			<!-- 
+																								        Bootstrap core JavaScript
+																								        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+																								         -->
+
+			<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
+			<script src="https://kit.fontawesome.com/25242ecb4d.js" crossorigin="anonymous"></script>
+		{% endblock %}
+	</body>
+	<div class="container-fluid"><br>
+		{% block footer %}
+			{% include 'home/footer.html.twig' %}
+		{% endblock %}
+	</div>
 </html>
