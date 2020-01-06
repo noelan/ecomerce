@@ -10,13 +10,14 @@ function showByFilters() {
                 if(checkBoxes[j].checked == true) {
                     currentParameters += checkBoxes[j].id + "+"
                 }
-            }
+
             console.log(url)
-            url = "/show/" + myType + "/" + currentParameters.substr(0, currentParameters.length-1);
-            window.location.replace(url)
+            url = "clothA/public/index.php/show/a" + myType + "/" + currentParameters.substr(0, currentParameters.length-1);
+            
+
         })
      }
-     
+     window.location.replace("haha" + url)
 }
 window.onload = showByFilters;
 

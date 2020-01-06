@@ -63,10 +63,19 @@ h3 {
   text-shadow: black 1px 1px;
   font-size: 2rem;
 }
+
+.responsiveEnCours{
+   position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, 450%);
+  text-shadow: black 1px 1px;
+  font-size: 1rem;
+}
+
 /* Parallax */
 .parallax {
   /* The image used */
-  background: transparent;
  }
 
 

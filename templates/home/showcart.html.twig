@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 	<div class="container cartContainer">
-	{% if app.session.get('cart') == 0 %}
+	{% if app.session.get('cart') == null %}
 		<h2 class="text-center oldtt">Votre panier est actuellement vide</h2>
 		<div class="text-center padding-t">
 			<a href="{{ path('home') }}"><button class="btn btn-info text-center">Retour a la boutique !</button></a>
